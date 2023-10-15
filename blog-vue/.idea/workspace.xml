@@ -1,0 +1,520 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="c57ea5de-ab88-4375-95d5-97866490cc9f" name="变更" comment="">
+      <change afterPath="$PROJECT_DIR$/../blog-boot/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-boot/src/main/java/com/godfazheer/BlogApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-boot/src/main/java/com/godfazheer/config/WebSecurityConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-boot/src/main/java/com/godfazheer/controller/ArticleController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-boot/src/main/java/com/godfazheer/controller/CategoriesController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-boot/src/main/java/com/godfazheer/controller/CommentController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-boot/src/main/java/com/godfazheer/controller/DescribeController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-boot/src/main/java/com/godfazheer/controller/FileController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-boot/src/main/java/com/godfazheer/controller/LoginController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-boot/src/main/java/com/godfazheer/controller/MenuController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-boot/src/main/java/com/godfazheer/controller/SiteInfoController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-boot/src/main/java/com/godfazheer/controller/TagController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-boot/src/main/java/com/godfazheer/dao/ArticleDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-boot/src/main/java/com/godfazheer/dao/CategoriesDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-boot/src/main/java/com/godfazheer/dao/CommentDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-boot/src/main/java/com/godfazheer/dao/DescribeDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-boot/src/main/java/com/godfazheer/dao/InfoDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-boot/src/main/java/com/godfazheer/dao/MenuDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-boot/src/main/java/com/godfazheer/dao/ReplyDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-boot/src/main/java/com/godfazheer/dao/TagDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-boot/src/main/java/com/godfazheer/dao/UserDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-boot/src/main/java/com/godfazheer/emnus/StatusCode.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-boot/src/main/java/com/godfazheer/entity/Article.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-boot/src/main/java/com/godfazheer/entity/Categories.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-boot/src/main/java/com/godfazheer/entity/Comment.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-boot/src/main/java/com/godfazheer/entity/Describe.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-boot/src/main/java/com/godfazheer/entity/Info.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-boot/src/main/java/com/godfazheer/entity/Menu.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-boot/src/main/java/com/godfazheer/entity/Notice.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-boot/src/main/java/com/godfazheer/entity/Reply.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-boot/src/main/java/com/godfazheer/entity/Role.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-boot/src/main/java/com/godfazheer/entity/Tag.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-boot/src/main/java/com/godfazheer/entity/User.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-boot/src/main/java/com/godfazheer/filter/JWTAuthenticationTokenFilter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-boot/src/main/java/com/godfazheer/handler/AccessDeniedHandlerImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-boot/src/main/java/com/godfazheer/handler/AuthenticationEntryPointImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-boot/src/main/java/com/godfazheer/handler/SaveSiteViewHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-boot/src/main/java/com/godfazheer/model/CategoryCardDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-boot/src/main/java/com/godfazheer/model/dto/ArchiveCardDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-boot/src/main/java/com/godfazheer/model/dto/CategoriesDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-boot/src/main/java/com/godfazheer/model/dto/CategoryCardDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-boot/src/main/java/com/godfazheer/model/dto/DescribeDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-boot/src/main/java/com/godfazheer/model/dto/IcpGovDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-boot/src/main/java/com/godfazheer/model/dto/InfoDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-boot/src/main/java/com/godfazheer/model/dto/LoginUserDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-boot/src/main/java/com/godfazheer/model/dto/MenuDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-boot/src/main/java/com/godfazheer/model/dto/NameUrlDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-boot/src/main/java/com/godfazheer/model/dto/NeighborArticleDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-boot/src/main/java/com/godfazheer/model/dto/NoticeDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-boot/src/main/java/com/godfazheer/model/dto/SettingDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-boot/src/main/java/com/godfazheer/model/dto/TagCardDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-boot/src/main/java/com/godfazheer/model/dto/TagDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-boot/src/main/java/com/godfazheer/model/dto/WeekViewDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-boot/src/main/java/com/godfazheer/model/dto/article/ArticleAdminDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-boot/src/main/java/com/godfazheer/model/dto/article/ArticleAdminUpdateDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-boot/src/main/java/com/godfazheer/model/dto/article/ArticleBaseDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-boot/src/main/java/com/godfazheer/model/dto/article/ArticleBaseYearDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-boot/src/main/java/com/godfazheer/model/dto/article/ArticleDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-boot/src/main/java/com/godfazheer/model/dto/article/ArticleHomeCardDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-boot/src/main/java/com/godfazheer/model/dto/article/ArticleRankDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-boot/src/main/java/com/godfazheer/model/dto/comment/CommentAdminDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-boot/src/main/java/com/godfazheer/model/dto/comment/CommentCountDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-boot/src/main/java/com/godfazheer/model/dto/comment/CommentDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-boot/src/main/java/com/godfazheer/model/dto/comment/CommentReplyDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-boot/src/main/java/com/godfazheer/model/dto/comment/ReplyDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-boot/src/main/java/com/godfazheer/model/vo/ArticleVO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-boot/src/main/java/com/godfazheer/model/vo/CategoriesVO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-boot/src/main/java/com/godfazheer/model/vo/CommentVO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-boot/src/main/java/com/godfazheer/model/vo/DescribeVO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-boot/src/main/java/com/godfazheer/model/vo/NoticeVO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-boot/src/main/java/com/godfazheer/model/vo/PageVO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-boot/src/main/java/com/godfazheer/model/vo/ReplyVO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-boot/src/main/java/com/godfazheer/model/vo/SettingVO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-boot/src/main/java/com/godfazheer/model/vo/TagVO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-boot/src/main/java/com/godfazheer/model/vo/UserVO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-boot/src/main/java/com/godfazheer/model/vo/result/ResultVO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-boot/src/main/java/com/godfazheer/service/ArticleService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-boot/src/main/java/com/godfazheer/service/CategoriesService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-boot/src/main/java/com/godfazheer/service/CommentService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-boot/src/main/java/com/godfazheer/service/DescribeService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-boot/src/main/java/com/godfazheer/service/InfoService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-boot/src/main/java/com/godfazheer/service/MenuService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-boot/src/main/java/com/godfazheer/service/RedisService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-boot/src/main/java/com/godfazheer/service/TagService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-boot/src/main/java/com/godfazheer/service/UserService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-boot/src/main/java/com/godfazheer/service/impl/ArticleServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-boot/src/main/java/com/godfazheer/service/impl/CategoriesServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-boot/src/main/java/com/godfazheer/service/impl/CommentServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-boot/src/main/java/com/godfazheer/service/impl/DescribeServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-boot/src/main/java/com/godfazheer/service/impl/InfoServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-boot/src/main/java/com/godfazheer/service/impl/MenuServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-boot/src/main/java/com/godfazheer/service/impl/ObsServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-boot/src/main/java/com/godfazheer/service/impl/RedisServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-boot/src/main/java/com/godfazheer/service/impl/TagServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-boot/src/main/java/com/godfazheer/service/impl/UserDetailsServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-boot/src/main/java/com/godfazheer/service/impl/UserServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-boot/src/main/java/com/godfazheer/utils/IPUtils.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-boot/src/main/java/com/godfazheer/utils/JacksonUtils.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-boot/src/main/java/com/godfazheer/utils/JwtUtils.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-boot/src/main/java/com/godfazheer/utils/WebUtils.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-boot/src/main/resources/application.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-boot/src/main/resources/mapper/ArticleMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-boot/src/main/resources/mapper/CategoriesDao.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-boot/src/main/resources/mapper/CommentMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-boot/src/main/resources/mapper/DescribeMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-boot/src/main/resources/mapper/InfoMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-boot/src/main/resources/mapper/MenuMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-boot/src/main/resources/mapper/RoleMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-boot/src/main/resources/mapper/TagMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-vue-admin/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-vue-admin/.idea/blog-vue-admin.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-vue-admin/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-vue-admin/.idea/jsLibraryMappings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-vue-admin/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-vue-admin/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-vue-admin/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-vue-admin/env.d.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-vue-admin/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-vue-admin/package-lock.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-vue-admin/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-vue-admin/public/Logo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-vue-admin/public/favicon.ico" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-vue-admin/src/App.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-vue-admin/src/api/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-vue-admin/src/assets/main.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-vue-admin/src/components/ArticleCategoryEcharts/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-vue-admin/src/components/ArticleCategoryEcharts/index.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-vue-admin/src/components/ArticleTr/DelTr/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-vue-admin/src/components/ArticleTr/DelTr/index.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-vue-admin/src/components/ArticleTr/DraftTr/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-vue-admin/src/components/ArticleTr/DraftTr/index.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-vue-admin/src/components/ArticleTr/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-vue-admin/src/components/ArticleTr/index.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-vue-admin/src/components/CategoryTr/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-vue-admin/src/components/CategoryTr/index.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-vue-admin/src/components/CommentTr/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-vue-admin/src/components/CommentTr/index.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-vue-admin/src/components/PublishModal/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-vue-admin/src/components/PublishModal/index.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-vue-admin/src/components/RouterTag/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-vue-admin/src/components/RouterTag/index.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-vue-admin/src/components/TagCloud/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-vue-admin/src/components/TagCloud/index.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-vue-admin/src/components/TagCloudTs/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-vue-admin/src/components/TagTr/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-vue-admin/src/components/TagTr/index.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-vue-admin/src/components/UpdateModal/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-vue-admin/src/components/UpdateModal/index.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-vue-admin/src/components/ViewCountEcharts/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-vue-admin/src/components/ViewCountEcharts/index.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-vue-admin/src/components/ViewCountRankEcharts/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-vue-admin/src/components/ViewCountRankEcharts/index.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-vue-admin/src/components/icons/404Icon/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-vue-admin/src/components/icons/404Icon/index.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-vue-admin/src/components/icons/500Icon/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-vue-admin/src/components/icons/500Icon/index.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-vue-admin/src/components/icons/CancelFullScreenIcon/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-vue-admin/src/components/icons/CancelFullScreenIcon/index.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-vue-admin/src/components/icons/CategoryIcon/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-vue-admin/src/components/icons/CategoryIcon/index.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-vue-admin/src/components/icons/DownTriangle/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-vue-admin/src/components/icons/DownTriangle/index.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-vue-admin/src/components/icons/ErrorIcon/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-vue-admin/src/components/icons/ErrorIcon/index.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-vue-admin/src/components/icons/ExceptionIcon/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-vue-admin/src/components/icons/ExceptionIcon/index.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-vue-admin/src/components/icons/FullScreenIcon/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-vue-admin/src/components/icons/FullScreenIcon/index.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-vue-admin/src/components/icons/Logo/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-vue-admin/src/components/icons/Logo/index.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-vue-admin/src/components/icons/OptionIcon/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-vue-admin/src/components/icons/OptionIcon/index.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-vue-admin/src/components/icons/UpTriangle/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-vue-admin/src/components/icons/UpTriangle/index.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-vue-admin/src/components/icons/WriteIcon/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-vue-admin/src/components/icons/WriteIcon/index.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-vue-admin/src/components/menu/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-vue-admin/src/components/menu/index.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-vue-admin/src/components/navNar/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-vue-admin/src/components/navNar/index.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-vue-admin/src/main.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-vue-admin/src/router/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-vue-admin/src/stores/BreadcrumbStore.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-vue-admin/src/stores/DeletedIdsStore.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-vue-admin/src/stores/MenuOptionProvider.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-vue-admin/src/stores/RouterTagStore.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-vue-admin/src/stores/provider.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-vue-admin/src/stores/useModalShowStore.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-vue-admin/src/stores/useTokenStore.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-vue-admin/src/stores/useUserInfoStore.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-vue-admin/src/type/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-vue-admin/src/views/404/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-vue-admin/src/views/404/index.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-vue-admin/src/views/505/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-vue-admin/src/views/505/index.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-vue-admin/src/views/ArticleView/Categories/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-vue-admin/src/views/ArticleView/Categories/index.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-vue-admin/src/views/ArticleView/List/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-vue-admin/src/views/ArticleView/List/index.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-vue-admin/src/views/ArticleView/Publish/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-vue-admin/src/views/ArticleView/Publish/index.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-vue-admin/src/views/ArticleView/Tag/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-vue-admin/src/views/ArticleView/Tag/index.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-vue-admin/src/views/ArticleView/Update/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-vue-admin/src/views/ArticleView/Update/index.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-vue-admin/src/views/Comment/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-vue-admin/src/views/Comment/index.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-vue-admin/src/views/Console/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-vue-admin/src/views/Console/index.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-vue-admin/src/views/Home/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-vue-admin/src/views/Home/index.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-vue-admin/src/views/LoggingView/ExceptionLog/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-vue-admin/src/views/LoggingView/ExceptionLog/index.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-vue-admin/src/views/LoggingView/OptionLog/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-vue-admin/src/views/LoggingView/OptionLog/index.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-vue-admin/src/views/Login/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-vue-admin/src/views/Login/index.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-vue-admin/src/views/SiteSetting/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-vue-admin/src/views/SiteSetting/index.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-vue-admin/tsconfig.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-vue-admin/tsconfig.node.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../blog-vue-admin/vite.config.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/blog-vue.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/env.d.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/banner.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/logo.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/preview.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/App.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/api/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/main.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/ArchiveCardItem/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/ArchiveCardItem/index.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/CategoryCardItem/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/CategoryCardItem/index.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/NewestItem/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/NewestItem/index.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Post/PaginationPost.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Post/PostHeader.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Post/PostOverView.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Post/postBase/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Post/postBase/index.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/TimeLineArticle/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/TimeLineArticle/index.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/aside-card/Categories/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/aside-card/Categories/index.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/aside-card/Date/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/aside-card/Date/index.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/aside-card/Info/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/aside-card/Info/index.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/aside-card/Newest/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/aside-card/Newest/index.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/aside-card/Notice/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/aside-card/Notice/index.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/aside-card/Pandect/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/aside-card/Pandect/index.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/aside-card/Tag/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/aside-card/Tag/index.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/aside/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/aside/index.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/banner/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/banner/index.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/comment/comment/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/comment/comment/index.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/comment/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/comment/index.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/comment/input/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/comment/input/index.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/comment/input/replyInput/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/comment/input/replyInput/index.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/comment/reply/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/comment/reply/index.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/cover/HomeLogo/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/cover/HomeLogo/index.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/cover/TypingWord/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/cover/TypingWord/index.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/footer/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/footer/index.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/icons/CIcon.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/icons/CommentIcon.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/icons/EmojiIcon.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/icons/TopIcon.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/menu/Menu.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/menu/items/Logo.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/menu/items/PageMenuItem.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/page/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/page/index.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/page/pageTitle/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/page/pageTitle/index.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/timeLineItem/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/timeLineItem/index.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/router/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/stores/useLoveIdStore.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/type/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/views/404/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/views/404/index.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/views/About.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/views/ArchiveTitleView.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/views/ArchiveView.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/views/Categories.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/views/HomeView.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/views/MessageBoard.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/views/PostView.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/views/TagView.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/views/categoriesArticle/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/views/categoriesArticle/index.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/views/tagArticle/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/views/tagArticle/index.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tsconfig.config.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tsconfig.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vite.config.ts" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="TypeScript File" />
+        <option value="Vue Composition API Component" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectId" id="2PuMfHAPrOPwXSRx2ZibUL1mS1a" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "E:/blog/blog-vue/src/views",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.keymap",
+    "ts.external.directory.path": "E:\\blog-project\\blog-vue\\node_modules\\typescript\\lib",
+    "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "vue.recent.templates": [
+      "Vue Composition API Component"
+    ]
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\blog\blog-vue\src\views" />
+      <recent name="E:\blog\blog-vue\src\components" />
+      <recent name="E:\blog\blog-vue\src\components\CategoryCardItem" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\blog\blog-vue\src\components" />
+    </key>
+  </component>
+  <component name="RunManager" selected="npm.dev">
+    <configuration name="build-only" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="build-only" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration name="dev" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="dev" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="npm.dev" />
+        <item itemvalue="npm.build-only" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="应用程序级" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="默认任务">
+      <changelist id="c57ea5de-ab88-4375-95d5-97866490cc9f" name="变更" comment="" />
+      <created>1684302620266</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1684302620266</updated>
+      <workItem from="1684302622282" duration="530000" />
+      <workItem from="1684303184266" duration="5000" />
+      <workItem from="1685093348569" duration="1371000" />
+      <workItem from="1685151833047" duration="14382000" />
+      <workItem from="1685272434056" duration="3859000" />
+      <workItem from="1685326028225" duration="3567000" />
+      <workItem from="1685329679934" duration="607000" />
+      <workItem from="1685330905954" duration="4137000" />
+      <workItem from="1685412245598" duration="12049000" />
+      <workItem from="1685497524708" duration="370000" />
+      <workItem from="1685507045195" duration="599000" />
+      <workItem from="1685510889678" duration="3596000" />
+      <workItem from="1685583831402" duration="6845000" />
+      <workItem from="1685594277900" duration="6430000" />
+      <workItem from="1685671028666" duration="6169000" />
+      <workItem from="1685703369226" duration="594000" />
+      <workItem from="1685883225082" duration="942000" />
+      <workItem from="1685902903422" duration="1154000" />
+      <workItem from="1685934153603" duration="779000" />
+      <workItem from="1686027440913" duration="1288000" />
+      <workItem from="1686108841813" duration="605000" />
+      <workItem from="1686130733747" duration="182000" />
+      <workItem from="1686166419689" duration="3228000" />
+      <workItem from="1686287037488" duration="2306000" />
+      <workItem from="1686324052085" duration="809000" />
+      <workItem from="1686363548789" duration="6713000" />
+      <workItem from="1686379471104" duration="1383000" />
+      <workItem from="1686407877086" duration="1189000" />
+      <workItem from="1686452345155" duration="1192000" />
+      <workItem from="1686488907922" duration="65000" />
+      <workItem from="1686571710414" duration="614000" />
+      <workItem from="1686628704183" duration="248000" />
+      <workItem from="1686735769634" duration="15000" />
+      <workItem from="1687606296420" duration="1597000" />
+      <workItem from="1687687783910" duration="14000" />
+      <workItem from="1687756947716" duration="2232000" />
+      <workItem from="1687781248038" duration="595000" />
+      <workItem from="1687869548052" duration="607000" />
+      <workItem from="1687922145157" duration="594000" />
+      <workItem from="1687932570967" duration="593000" />
+      <workItem from="1688006718361" duration="595000" />
+      <workItem from="1688044588103" duration="78000" />
+      <workItem from="1688090620598" duration="703000" />
+      <workItem from="1688102334222" duration="1319000" />
+      <workItem from="1688185181503" duration="24000" />
+      <workItem from="1688541996221" duration="593000" />
+      <workItem from="1688610942760" duration="7119000" />
+      <workItem from="1688638667517" duration="602000" />
+      <workItem from="1688693335947" duration="4392000" />
+      <workItem from="1688710793028" duration="6189000" />
+      <workItem from="1688729155078" duration="14004000" />
+      <workItem from="1688782964366" duration="4361000" />
+      <workItem from="1688797209391" duration="9136000" />
+      <workItem from="1688880552011" duration="196000" />
+      <workItem from="1688882468760" duration="2889000" />
+      <workItem from="1688889653223" duration="1791000" />
+      <workItem from="1688969976382" duration="2728000" />
+      <workItem from="1688973857928" duration="4043000" />
+      <workItem from="1688990070100" duration="2379000" />
+      <workItem from="1689045745148" duration="1167000" />
+      <workItem from="1689053325155" duration="2460000" />
+      <workItem from="1689071918856" duration="595000" />
+      <workItem from="1689127910387" duration="2892000" />
+      <workItem from="1689139538774" duration="6203000" />
+      <workItem from="1689149604956" duration="4437000" />
+      <workItem from="1689155112763" duration="2681000" />
+      <workItem from="1689214141195" duration="1620000" />
+      <workItem from="1689241187986" duration="717000" />
+      <workItem from="1689255214544" duration="597000" />
+      <workItem from="1689304644876" duration="2751000" />
+      <workItem from="1689406631327" duration="595000" />
+      <workItem from="1689486696887" duration="1209000" />
+      <workItem from="1689571236038" duration="1192000" />
+      <workItem from="1689658761901" duration="3391000" />
+      <workItem from="1689732737993" duration="1850000" />
+      <workItem from="1689829809460" duration="2685000" />
+      <workItem from="1689924568020" duration="1655000" />
+      <workItem from="1689998361965" duration="593000" />
+      <workItem from="1690086744197" duration="592000" />
+      <workItem from="1690173226011" duration="1189000" />
+      <workItem from="1690339868148" duration="2126000" />
+      <workItem from="1690364541653" duration="596000" />
+      <workItem from="1690562458767" duration="1166000" />
+      <workItem from="1690855434851" duration="594000" />
+      <workItem from="1690939375088" duration="594000" />
+      <workItem from="1690954943846" duration="1486000" />
+      <workItem from="1691029016580" duration="593000" />
+      <workItem from="1691133065146" duration="171000" />
+      <workItem from="1691133287315" duration="1199000" />
+      <workItem from="1691189733161" duration="2390000" />
+      <workItem from="1691462985721" duration="7527000" />
+      <workItem from="1691546192445" duration="594000" />
+      <workItem from="1691645733938" duration="593000" />
+      <workItem from="1691730268967" duration="1078000" />
+      <workItem from="1691899410062" duration="584000" />
+      <workItem from="1697343933917" duration="834000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>

@@ -1,0 +1,409 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.godfazheer.dao.ArticleDao">
+    <delete id="deleteArticlesPhysics" parameterType="java.util.List">
+        delete from tbl_article where id in
+        <foreach collection="ids" item="id" separator="," open="(" close=")">
+            #{id}
+        </foreach>
+    </delete>
+    <select id="selectHomeArticles" resultType="com.godfazheer.model.dto.article.ArticleHomeCardDTO">
+        select a.id,
+               title,
+               cover_url,
+               substr(a.content, 2, 200) as content,
+               a.create_at,
+               c.name                    as category_name,
+               is_top,
+               (select count(*)
+                from tbl_comment o
+                where o.page_id = a.id)  as comment_num
+        from tbl_article a
+                 left join tbl_categories c on a.categories_id = c.id
+        where a.deleted = 0
+          and a.status = 0
+        order by is_top desc, a.create_at desc
+        limit #{pageNum},10
+        ;
+    </select>
+    <select id="selectNeighborArticleById" resultType="com.godfazheer.model.dto.NeighborArticleDTO">
+        select id, title, cover_url
+        from tbl_article
+        where id = #{articleId}
+    </select>
+
+    <select id="selectArticleByTagId" resultType="com.godfazheer.model.dto.article.ArticleBaseDTO">
+        select a.id, a.title, a.cover_url, a.create_at
+        from tbl_article a
+                 left join tbl_tag_article ta on a.id = ta.article_id
+                 left join tbl_tag tg on tg.id = ta.tag_id
+        where tg.id = #{tagId}
+          and a.deleted = 0
+          and a.status = 0
+        order by a.create_at desc
+        limit #{pageNum},10;
+    </select>
+    <select id="selectArticleIds" resultType="java.lang.Long">
+        select id
+        from tbl_article
+        where deleted=0
+        order by is_top desc, create_at desc
+    </select>
+    <select id="selectAdminArticles" resultType="com.godfazheer.model.dto.article.ArticleAdminDTO">
+        select a.id,
+               cover_url,
+               title,
+               c.name as category_name,
+               a.views,
+               a.create_at,
+               is_top
+        from tbl_article a
+                 left join tbl_categories c on a.categories_id = c.id
+        where a.deleted = 0
+          and a.status = 0
+        order by is_top desc, a.create_at desc
+        limit #{pageNum},10
+    </select>
+
+    <select id="selectDelArticles" resultType="com.godfazheer.model.dto.article.ArticleAdminDTO">
+        select a.id,
+               cover_url,
+               title,
+               c.name as category_name,
+               a.views,
+               a.create_at,
+               is_top
+        from tbl_article a
+                 left join tbl_categories c on a.categories_id = c.id
+        where a.deleted = 1
+          and a.status = 0
+        order by is_top desc, a.create_at desc
+        limit #{pageNum},10
+    </select>
+    <select id="selectDraftArticles" resultType="com.godfazheer.model.dto.article.ArticleAdminDTO">
+        select a.id,
+               cover_url,
+               title,
+               c.name as category_name,
+               a.views,
+               a.create_at,
+               is_top
+        from tbl_article a
+                 left join tbl_categories c on a.categories_id = c.id
+        where a.deleted = 0
+          and a.status = 1
+        order by is_top desc, a.create_at desc
+        limit #{pageNum},10
+    </select>
+
+    <select id="selectGroupYear" resultType="java.lang.String">
+        select DATE_FORMAT(create_at, '%Y') as year
+        from tbl_article
+        where deleted=0
+        group by year
+    </select>
+    <select id="selectArticleBaseYear" resultType="com.godfazheer.model.dto.article.ArticleBaseYearDTO">
+        select id, title, cover_url, create_at, DATE_FORMAT(create_at, '%Y') year
+        from tbl_article
+        where deleted=0
+        order by create_at desc
+        limit #{pageNum},10
+    </select>
+    <select id="selectArticleBaseYearByCategoryId" resultType="com.godfazheer.model.dto.article.ArticleBaseYearDTO">
+        select id, title, cover_url, create_at, DATE_FORMAT(create_at, '%Y') year
+        from tbl_article
+        where categories_id = #{categoryId} and deleted=0
+        order by create_at desc
+        limit #{pageNum},10
+    </select>
+    <select id="selectArticleBaseYearByTagId" resultType="com.godfazheer.model.dto.article.ArticleBaseYearDTO">
+        select  ta.id, title, cover_url, create_at, DATE_FORMAT(create_at, '%Y') year
+        from tbl_tag_article tta
+            left join tbl_article ta on ta.id = tta.article_id left join tbl_tag tt on tt.id = tta.tag_id
+        where tt.id= #{tagId}
+        order by create_at desc
+        limit #{pageNum},10
+    </select>
+    <select id="selectArticleCountByTagId" resultType="java.lang.Long">
+        select count(*) count
+        from tbl_tag_article
+        left join tbl_article a on a.deleted=0 and a.status=0 and a.id=tbl_tag_article.article_id
+        where tag_id = #{tagId}
+    </select>
+    <select id="selectArticleCountByCategoryId" resultType="java.lang.Integer">
+        select count(*) count
+        from tbl_article
+        where categories_id = #{categoryId} and deleted=0
+    </select>
+    <select id="selectArticleBaseWithTitle" resultType="com.godfazheer.model.dto.article.ArticleBaseDTO">
+        select id, title, cover_url, create_at
+        from tbl_article
+        where DATE_FORMAT(create_at, '%Y年%m月') = #{title} and deleted=0
+        order by create_at desc
+        limit #{pageNum},10
+    </select>
+    <select id="selectArticleBaseWithTitleCount" resultType="java.lang.Long">
+        select count(*)
+        from tbl_article
+        where DATE_FORMAT(create_at, '%Y年%m月') = #{title} and deleted=0
+    </select>
+    <select id="selectAdminArticlesByCategoryId" resultType="com.godfazheer.model.dto.article.ArticleAdminDTO">
+        select a.id,
+               cover_url,
+               title,
+               c.name as category_name,
+               a.views,
+               a.create_at,
+               is_top
+        from tbl_article a
+                 left join tbl_categories c on a.categories_id = c.id
+        where a.deleted = 0
+          and a.status = 0
+          and a.categories_id = #{categoryId}
+        order by is_top desc, a.create_at desc
+        limit #{pageNum},10
+    </select>
+    <select id="selectAdminDraftArticlesByCategoryId" resultType="com.godfazheer.model.dto.article.ArticleAdminDTO">
+        select a.id,
+               cover_url,
+               title,
+               c.name as category_name,
+               a.views,
+               a.create_at,
+               is_top
+        from tbl_article a
+                 left join tbl_categories c on a.categories_id = c.id
+        where a.deleted = 0
+          and a.status = 1
+          and a.categories_id = #{categoryId}
+        order by is_top desc, a.create_at desc
+        limit #{pageNum},10
+    </select>
+    <select id="selectAdminDelArticlesByCategoryId"
+            resultType="com.godfazheer.model.dto.article.ArticleAdminDTO">
+        select a.id,
+               cover_url,
+               title,
+               c.name as category_name,
+               a.views,
+               a.create_at,
+               is_top
+        from tbl_article a
+                 left join tbl_categories c on a.categories_id = c.id
+        where a.deleted = 1
+          and a.status = 0
+          and a.categories_id = #{categoryId}
+        order by is_top desc, a.create_at desc
+        limit #{pageNum},10
+    </select>
+    <select id="selectAdminDelArticlesByTagId"
+            resultType="com.godfazheer.model.dto.article.ArticleAdminDTO">
+        select a.id,
+               cover_url,
+               title,
+               c.name as category_name,
+               a.views,
+               a.create_at,
+               is_top
+        from tbl_article a
+                 left join tbl_categories c on a.categories_id = c.id
+                 left join tbl_tag_article tta on tta.article_id = a.id
+        where a.deleted = 1
+          and a.status = 0
+          and tta.tag_id = #{tagId}
+        order by is_top desc, a.create_at desc
+        limit #{pageNum},10
+    </select>
+    <select id="selectAdminDraftArticlesByTagId"
+            resultType="com.godfazheer.model.dto.article.ArticleAdminDTO">
+        select a.id,
+               cover_url,
+               title,
+               c.name as category_name,
+               a.views,
+               a.create_at,
+               is_top
+        from tbl_article a
+                 left join tbl_categories c on a.categories_id = c.id
+                 left join tbl_tag_article tta on tta.article_id = a.id
+        where a.deleted = 0
+          and a.status = 1
+          and tta.tag_id = #{tagId}
+        order by is_top desc, a.create_at desc
+        limit #{pageNum},10
+    </select>
+    <select id="selectAdminArticlesByTagId"
+            resultType="com.godfazheer.model.dto.article.ArticleAdminDTO">
+        select a.id,
+               cover_url,
+               title,
+               c.name as category_name,
+               a.views,
+               a.create_at,
+               is_top
+        from tbl_article a
+                 left join tbl_categories c on a.categories_id = c.id
+                 left join tbl_tag_article tta on tta.article_id = a.id
+        where a.deleted = 0
+          and a.status = 0
+          and tta.tag_id = #{tagId}
+        order by is_top desc, a.create_at desc
+        limit #{pageNum},10
+    </select>
+    <select id="selectAdminDelArticlesByTitle"
+            resultType="com.godfazheer.model.dto.article.ArticleAdminDTO">
+        select a.id,
+               cover_url,
+               title,
+               c.name as category_name,
+               a.views,
+               a.create_at,
+               is_top
+        from tbl_article a
+                 left join tbl_categories c on a.categories_id = c.id
+        where a.deleted = 1
+          and a.status = 0
+          and a.title like concat('%', #{title}, '%')
+        order by is_top desc, a.create_at desc
+        limit #{pageNum},10
+    </select>
+    <select id="selectAdminDraftArticlesByTitle"
+            resultType="com.godfazheer.model.dto.article.ArticleAdminDTO">
+        select a.id,
+               cover_url,
+               title,
+               c.name as category_name,
+               a.views,
+               a.create_at,
+               is_top
+        from tbl_article a
+                 left join tbl_categories c on a.categories_id = c.id
+
+        where a.deleted = 0
+          and a.status = 1
+          and a.title like concat('%', #{title}, '%')
+        order by is_top desc, a.create_at desc
+        limit #{pageNum},10
+    </select>
+    <select id="selectAdminArticlesByTitle"
+            resultType="com.godfazheer.model.dto.article.ArticleAdminDTO">
+        select a.id,
+               cover_url,
+               title,
+               c.name as category_name,
+               a.views,
+               a.create_at,
+               is_top
+        from tbl_article a
+                 left join tbl_categories c on a.categories_id = c.id
+        where a.deleted = 0
+          and a.status = 0
+          and a.title like concat('%', #{title}, '%')
+        order by is_top desc, a.create_at desc
+        limit #{pageNum},10
+    </select>
+    <select id="selectDelArticleCountByTitle"
+            resultType="java.lang.Long">
+        select count(*)
+        from tbl_article a
+        where a.deleted = 1
+          and a.status = 0
+          and a.title like concat('%', #{title}, '%')
+    </select>
+    <select id="selectDraftArticleCountByTitle"
+            resultType="java.lang.Long">
+        select count(*)
+        from tbl_article a
+        where a.deleted = 0
+          and a.status = 1
+          and a.title like concat('%', #{title}, '%')
+    </select>
+    <select id="selectArticleCountByTitle"
+            resultType="java.lang.Long">
+        select count(*)
+        from tbl_article a
+        where a.deleted = 0
+          and a.status = 0
+          and a.title like concat('%', #{title}, '%')
+    </select>
+    <select id="selectAdminArticleById" resultType="com.godfazheer.model.dto.article.ArticleAdminUpdateDTO">
+        select a.id,
+               cover_url,
+               title,
+               content,
+               c.name as category_name,
+               a.views,
+               a.create_at,
+               is_top
+        from tbl_article a
+                 left join tbl_categories c on a.categories_id = c.id
+        where a.deleted = 0
+          and a.status = 0
+          and a.id = #{id}
+    </select>
+    <select id="selectDraftArticleCount" resultType="java.lang.Long">
+        select count(*)
+        from tbl_article a
+        where a.deleted = 0
+          and a.status = 1
+    </select>
+    <select id="selectDelArticleCount" resultType="java.lang.Long">
+        select count(*)
+        from tbl_article a
+        where a.deleted = 1
+          and a.status = 0
+    </select>
+    <select id="selectArticleCount" resultType="java.lang.Long">
+        select count(*)
+        from tbl_article a
+        where a.deleted = 0
+          and a.status = 0
+    </select>
+
+    <update id="updateTop">
+        update tbl_article
+        set is_top = #{isTop}
+        where id = #{id}
+    </update>
+
+    <select id="selectDraftArticleCountByTagId" resultType="java.lang.Long">
+        select count(*) count
+        from tbl_tag_article
+                 left join tbl_article a
+                           on a.deleted = 0
+                               and a.status = 1 and a.id = tbl_tag_article.article_id
+        where tag_id = #{tagId}
+    </select>
+    <select id="selectDelArticleCountByTagId" resultType="java.lang.Long">
+        select count(*) count
+        from tbl_tag_article
+                 left join tbl_article a on a.deleted = 0
+            and a.status = 1
+            and a.id = tbl_tag_article.article_id
+        where tag_id = #{tagId}
+    </select>
+    <select id="selectAdminDelArticlesByCategoryIdCount" resultType="java.lang.Long">
+        select count(*)
+        from tbl_article a
+                 left join tbl_categories c on a.categories_id = c.id
+        where a.deleted = 1
+          and a.status = 0
+          and a.categories_id = #{categoryId}
+    </select>
+    <select id="selectAdminArticlesByCategoryIdCount" resultType="java.lang.Long">
+        select count(*) as count
+        from tbl_article a
+                 left join tbl_categories c on a.categories_id = c.id
+        where a.deleted = 0
+          and a.status = 0
+          and a.categories_id = #{categoryId}
+    </select>
+    <select id="selectAdminDraftArticlesByCategoryIdCount" resultType="java.lang.Long">
+        select count(*)
+        from tbl_article a
+                 left join tbl_categories c on a.categories_id = c.id
+        where a.deleted = 0
+          and a.status = 1
+          and a.categories_id = #{categoryId}
+    </select>
+</mapper>

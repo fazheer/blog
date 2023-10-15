@@ -1,0 +1,47 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+body {
+    font-size: 14px;
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI","Helvetica Neue",Lato,Roboto,"PingFang SC","Microsoft JhengHei","Microsoft YaHei",sans-serif;
+    line-height: 2;
+    -webkit-tap-highlight-color: transparent;
+}
+a:link{
+    color: black;
+     text-decoration: none;
+ }
+ a:visited{
+    color: black;
+     text-decoration: none;
+ }
+ a:hover{
+     text-decoration: none;
+     color: #315a6e;
+ }
+ a:active{
+    color: #f7f6e2;
+     text-decoration: none;
+ }
+.router-link-active{
+    color: grey;
+}
+.card-title{
+    font-size: 1.2rem;
+    display: inline-flex; 
+    align-items: center
+}
+*::-webkit-scrollbar {
+    width: 5px; 
+ }
+
+*::-webkit-scrollbar-thumb {
+  background: rgb(132, 136, 129);
+  border-radius: 25px;
+}
+.n-card{
+border-radius: 8px;
+box-shadow: 0 3px 8px 6px rgba(7,17,27,0.05);
+}

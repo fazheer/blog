@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.godfazheer.dao.CommentDao">
+
+
+    <select id="selectPageComments" resultType="com.godfazheer.model.dto.comment.CommentDTO">
+    select id,
+           content,
+           name,
+           email,
+           url,
+           create_at,
+           love,
+           device,
+           address,
+           ops,
+           page_id
+    from tbl_comment
+    where page_id = #{pageId}
+    order by create_at desc
+    </select>
+    <select id="selectReplies" resultType="com.godfazheer.model.dto.comment.ReplyDTO">
+        select id,
+               content,
+               name,
+               email,
+               url,
+               create_at,
+               love,
+               device,
+               address,
+               ops,
+               comment_id,
+               to_id
+        from tbl_reply
+        where comment_id=#{commentID};
+    </select>
+    <select id="selectAllCommentAndReply" resultType="com.godfazheer.model.dto.comment.CommentAdminDTO">
+        select id,
+               content,
+               name,
+               email,
+               url,
+               create_at,
+               love
+        from (select id,
+                     content,
+                     name,
+                     email,
+                     url,
+                     create_at,
+                     love
+              from tbl_comment
+              union all
+              select id,
+                     content,
+                     name,
+                     email,
+                     url,
+                     create_at,
+                     love
+              from tbl_reply
+              ) comments
+            limit #{pageNum},10
+        ;
+    </select><select id="selectAllCommentAndReplyCount" resultType="java.lang.Long">
+        select count(*)
+        from (select id,
+                     content,
+                     name,
+                     email,
+                     url,
+                     create_at,
+                     love
+              from tbl_comment
+              union all
+              select id,
+                     content,
+                     name,
+                     email,
+                     url,
+                     create_at,
+                     love
+              from tbl_reply
+             ) comments
+        ;
+    </select>
+    <select id="selectMonthCommentCount" resultType="com.godfazheer.model.dto.comment.CommentCountDTO">
+        with month as (select count(*) as monthCount
+                       from tbl_comment
+                       where DATE_FORMAT(create_at, '%m') = #{month}
+                       union all
+                       select count(*) as monthCount
+                       from tbl_reply
+                       where DATE_FORMAT(create_at, '%m') = #{month}
+                         ),
+             total as (select count(*) as totalCount
+                       from tbl_comment
+                       union all
+                       select count(*) as totalCount
+                       from tbl_reply)
+        select sum(monthCount) month, (select sum(totalCount) from total) as total
+        from month
+    </select>
+
+</mapper>

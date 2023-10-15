@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.godfazheer.dao.InfoDao">
+    <update id="updateSetting">
+        update sys_info set
+                            avatar_url = #{setting.avatarUrl},
+                            project_url=#{setting.projectUrl},
+                            email = #{setting.email},
+                            site_name =#{setting.siteName},
+                            typing_word = #{setting.typingWord},
+                            name=#{setting.name},
+                            personal_profile=#{setting.personalProfile},
+                            notice = #{setting.notice},
+                            build_time=#{setting.buildTime},
+                            icp = #{setting.icp},
+                            gov= #{setting.gov}
+        where true;
+    </update>
+    <update id="updateAdminAvatar">
+        update sys_user set avatar_url = #{avatarUrl} where id= 1
+    </update>
+   <update id="updateJiaokerAvatar">
+        update sys_user set avatar_url = #{avatarUrl} where id= 2
+    </update>
+    <select id="getSiteInfo" resultType="com.godfazheer.model.dto.InfoDTO">
+        select (select count(*) from tbl_article)    as articleCount,
+               (select count(*) from tbl_tag)        as tagCount,
+               (select count(*) from tbl_categories) as categoryCount,
+               avatar_url,
+               personal_profile,
+               project_url,
+               name,
+               site_name,
+               typing_word,
+               notice,
+               build_time,
+               site_view,
+               (select create_at from tbl_article where  deleted= 0 and status=0 order by create_at desc limit 0,1) as last_time,
+               email
+        from sys_info
+    </select>
+    <select id="selectSiteSetting" resultType="com.godfazheer.model.dto.SettingDTO">
+        select avatar_url,
+               (select avatar_url from sys_user where id = 1) as admin_avatar,
+               (select avatar_url from sys_user where id = 2) as jiaoker_avatar,
+               project_url,
+               email,
+               site_name,
+               typing_word,
+               name,
+               personal_profile,
+               build_time,
+               notice,
+               icp,
+               gov
+        from sys_info
+    </select>
+</mapper>

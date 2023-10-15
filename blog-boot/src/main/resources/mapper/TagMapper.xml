@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.godfazheer.dao.TagDao">
+    <insert id="addArticleTagRel">
+        insert into tbl_tag_article (article_id, tag_id) value (#{articleId}, #{tagId})
+    </insert>
+    <delete id="delArticleRel">
+        delete from tbl_tag_article where tag_id in
+        <foreach collection="tagIds" item="id" separator="," open="(" close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+    <select id="selectTagNameByArticleId" resultType="java.lang.String">
+        select name
+        from tbl_tag tt
+                 left join tbl_tag_article tta on tta.article_id = #{articleId}
+        where tt.id = tta.tag_id
+    </select>
+    <select id="selectTagCard" resultType="com.godfazheer.model.dto.TagCardDTO">
+        select tt.id, tt.name, count(tta.article_id) as count
+        from tbl_tag tt
+                 left join tbl_tag_article tta on tta.tag_id = tt.id
+        group by tt.id, tt.name
+        limit #{pageNum},10
+    </select>
+    <select id="selectTagCardByName" resultType="com.godfazheer.model.dto.TagCardDTO">
+        select tt.id, tt.name, count(tta.article_id) as count
+        from tbl_tag tt
+                 left join tbl_tag_article tta on tta.tag_id = tt.id
+          and tt.name like concat('%', #{name}, '%')
+        group by tt.id, tt.name
+        limit #{pageNum},10
+    </select>
+    <select id="selectTagCardByNameCount" resultType="java.lang.Long">
+        select count(*)
+        from tbl_tag
+        where name = #{name}
+    </select>
+</mapper>

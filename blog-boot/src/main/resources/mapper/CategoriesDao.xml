@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.godfazheer.dao.CategoriesDao">
+    <select id="selectAdminCategoryCard" resultType="com.godfazheer.model.CategoryCardDTO">
+        select tc.id, name, count(ta.id) count
+        from tbl_categories tc
+                 left join tbl_article ta
+                           on tc.id = ta.categories_id
+        group by tc.id, name
+        limit #{pageNum},10
+    </select>
+    <select id="selectAdminCategoryCardByName" resultType="com.godfazheer.model.CategoryCardDTO">
+        select tc.id, name, count(ta.id) count
+        from tbl_categories tc
+                 left join tbl_article ta
+                           on tc.id = ta.categories_id
+        where  tc.name like  concat('%', #{name}, '%')
+        group by tc.id, name
+        limit #{pageNum},10
+    </select>
+    <select id="selectAdminCategoryCardByNameCount" resultType="java.lang.Long">
+        select count(*)
+        from tbl_categories tc
+        where tc.name like concat('%', #{name}, '%')
+    </select>
+</mapper>
