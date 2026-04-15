@@ -2,23 +2,27 @@ package com.godfazheer.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.godfazheer.dao.ArticleDao;
 import com.godfazheer.dao.CategoriesDao;
 import com.godfazheer.dao.TagDao;
 import com.godfazheer.entity.Article;
 import com.godfazheer.entity.Categories;
 import com.godfazheer.entity.Tag;
+import com.godfazheer.model.dto.ArticleTagDTO;
 import com.godfazheer.model.dto.NeighborArticleDTO;
 import com.godfazheer.model.dto.article.*;
 import com.godfazheer.model.vo.ArticleVO;
 import com.godfazheer.service.ArticleService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * <p>
@@ -28,6 +32,7 @@ import java.util.Set;
  * @author M-Y-H
  * @since 2023-05-01
  */
+@Slf4j
 @Service
 public class ArticleServiceImpl implements ArticleService {
     @Autowired
@@ -39,6 +44,22 @@ public class ArticleServiceImpl implements ArticleService {
     @Autowired
     private RedisServiceImpl redisService;
 
+    private void fillArticleTags(List<ArticleAdminDTO> articles) {
+        if (articles == null || articles.isEmpty()) {
+            return;
+        }
+        List<Long> articleIds = articles.stream()
+                .map(ArticleAdminDTO::getId)
+                .distinct()
+                .collect(Collectors.toList());
+        List<ArticleTagDTO> articleTags = tagDao.selectTagNameByArticleIds(articleIds);
+        Map<Long, List<String>> tagMap = articleTags.stream()
+                .collect(Collectors.groupingBy(
+                        ArticleTagDTO::getArticleId,
+                        Collectors.mapping(ArticleTagDTO::getTagName, Collectors.toList())
+                ));
+        articles.forEach(article -> article.setTags(tagMap.getOrDefault(article.getId(), List.of())));
+    }
 
     @Override
     public List<ArticleBaseYearDTO> getArchiveArticle(Long pageNum) {
@@ -66,7 +87,7 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     public List<ArticleBaseDTO> getTopSixArticle() {
-        return articleDao.selectToxSixArticles();
+        return articleDao.selectTopSixArticles();
     }
 
     @Override
@@ -81,16 +102,14 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Override
     public void updateArticleView(Long articleId) {
-        Article article = articleDao.selectById(articleId);
         LambdaUpdateWrapper<Article> luw = new LambdaUpdateWrapper<>();
         luw.eq(Article::getId, articleId);
-        luw.set(Article::getViews, article.getViews() + 1);
+        luw.setSql("views = views + 1");
         articleDao.update(null, luw);
     }
 
     @Override
-    public ArticleDTO getArticleById(Long articleId) throws JsonProcessingException {
-        setArticleIdsRedis();
+    public ArticleDTO getArticleById(Long articleId) {
         LambdaQueryWrapper<Article> lqw = new LambdaQueryWrapper<>();
         lqw.eq(Article::getId, articleId);
         Article article = articleDao.selectOne(lqw);
@@ -116,94 +135,99 @@ public class ArticleServiceImpl implements ArticleService {
     @Override
     public List<ArticleAdminDTO> getAdminArticles(Long pageNum) {
         List<ArticleAdminDTO> articleAdminDTOS = articleDao.selectAdminArticles((pageNum - 1) * 10);
-        articleAdminDTOS.forEach(articleAdminDTO -> articleAdminDTO.setTags(tagDao.selectTagNameByArticleId(articleAdminDTO.getId())));
+        fillArticleTags(articleAdminDTOS);
         return articleAdminDTOS;
     }
 
     @Override
     public List<ArticleAdminDTO> getAdminArticlesByCategoryId(Long categoryId, Long pageNum) {
         List<ArticleAdminDTO> articleAdminDTOS = articleDao.selectAdminArticlesByCategoryId(categoryId, (pageNum - 1) * 10);
-        articleAdminDTOS.forEach(articleAdminDTO -> articleAdminDTO.setTags(tagDao.selectTagNameByArticleId(articleAdminDTO.getId())));
+        fillArticleTags(articleAdminDTOS);
         return articleAdminDTOS;
     }
 
     @Override
     public List<ArticleAdminDTO> getAdminDelArticlesByCategoryId(Long categoryId, Long pageNum) {
         List<ArticleAdminDTO> articleAdminDTOS = articleDao.selectAdminDelArticlesByCategoryId(categoryId, (pageNum - 1) * 10);
-        articleAdminDTOS.forEach(articleAdminDTO -> articleAdminDTO.setTags(tagDao.selectTagNameByArticleId(articleAdminDTO.getId())));
+        fillArticleTags(articleAdminDTOS);
         return articleAdminDTOS;
     }
 
     @Override
     public List<ArticleAdminDTO> getAdminDraftArticlesByCategoryId(Long categoryId, Long pageNum) {
         List<ArticleAdminDTO> articleAdminDTOS = articleDao.selectAdminDraftArticlesByCategoryId(categoryId, (pageNum - 1) * 10);
-        articleAdminDTOS.forEach(articleAdminDTO -> articleAdminDTO.setTags(tagDao.selectTagNameByArticleId(articleAdminDTO.getId())));
+        fillArticleTags(articleAdminDTOS);
         return articleAdminDTOS;
     }
 
     @Override
     public List<ArticleAdminDTO> getAdminArticlesByTagId(Long tagId, Long pageNum) {
         List<ArticleAdminDTO> articleAdminDTOS = articleDao.selectAdminArticlesByTagId(tagId, (pageNum - 1) * 10);
-        articleAdminDTOS.forEach(articleAdminDTO -> articleAdminDTO.setTags(tagDao.selectTagNameByArticleId(articleAdminDTO.getId())));
+        fillArticleTags(articleAdminDTOS);
         return articleAdminDTOS;
     }
 
     @Override
     public List<ArticleAdminDTO> getAdminDelArticlesByTagId(Long tagId, Long pageNum) {
         List<ArticleAdminDTO> articleAdminDTOS = articleDao.selectAdminDelArticlesByTagId(tagId, (pageNum - 1) * 10);
-        articleAdminDTOS.forEach(articleAdminDTO -> articleAdminDTO.setTags(tagDao.selectTagNameByArticleId(articleAdminDTO.getId())));
+        fillArticleTags(articleAdminDTOS);
         return articleAdminDTOS;
     }
 
     @Override
     public List<ArticleAdminDTO> getAdminDraftArticlesByTagId(Long tagId, Long pageNum) {
         List<ArticleAdminDTO> articleAdminDTOS = articleDao.selectAdminDraftArticlesByTagId(tagId, (pageNum - 1) * 10);
-        articleAdminDTOS.forEach(articleAdminDTO -> articleAdminDTO.setTags(tagDao.selectTagNameByArticleId(articleAdminDTO.getId())));
+        fillArticleTags(articleAdminDTOS);
         return articleAdminDTOS;
     }
 
     @Override
     public List<ArticleAdminDTO> getAdminArticlesByTitle(String title, Long pageNum) {
         List<ArticleAdminDTO> articleAdminDTOS = articleDao.selectAdminArticlesByTitle(title, (pageNum - 1) * 10);
-        articleAdminDTOS.forEach(articleAdminDTO -> articleAdminDTO.setTags(tagDao.selectTagNameByArticleId(articleAdminDTO.getId())));
+        fillArticleTags(articleAdminDTOS);
         return articleAdminDTOS;
     }
 
     @Override
     public List<ArticleAdminDTO> getAdminDelArticlesByTitle(String title, Long pageNum) {
         List<ArticleAdminDTO> articleAdminDTOS = articleDao.selectAdminDelArticlesByTitle(title, (pageNum - 1) * 10);
-        articleAdminDTOS.forEach(articleAdminDTO -> articleAdminDTO.setTags(tagDao.selectTagNameByArticleId(articleAdminDTO.getId())));
+        fillArticleTags(articleAdminDTOS);
         return articleAdminDTOS;
     }
 
     @Override
     public List<ArticleAdminDTO> getAdminDraftArticlesByTitle(String title, Long pageNum) {
         List<ArticleAdminDTO> articleAdminDTOS = articleDao.selectAdminDraftArticlesByTitle(title, (pageNum - 1) * 10);
-        articleAdminDTOS.forEach(articleAdminDTO -> articleAdminDTO.setTags(tagDao.selectTagNameByArticleId(articleAdminDTO.getId())));
+        fillArticleTags(articleAdminDTOS);
         return articleAdminDTOS;
     }
 
     @Override
     public List<ArticleAdminDTO> getDelArticles(Long pageNum) {
         List<ArticleAdminDTO> delArticles = articleDao.selectDelArticles((pageNum - 1) * 10);
-        delArticles.forEach(delArticle -> delArticle.setTags(tagDao.selectTagNameByArticleId(delArticle.getId())));
+        fillArticleTags(delArticles);
         return delArticles;
     }
 
     @Override
     public List<ArticleAdminDTO> getDraftArticles(Long pageNum) {
         List<ArticleAdminDTO> draftArticles = articleDao.selectDraftArticles((pageNum - 1) * 10);
-        draftArticles.forEach(draftArticle -> draftArticle.setTags(tagDao.selectTagNameByArticleId(draftArticle.getId())));
+        fillArticleTags(draftArticles);
         return draftArticles;
     }
 
     @Override
-    public void setArticleIdsRedis() throws JsonProcessingException {
-        List<Long> articleIds = articleDao.selectArticleIds();
-        redisService.setListToZSet("article:ids", articleIds);
+    public void setArticleIdsRedis() {
+        try {
+            List<Long> articleIds = articleDao.selectArticleIds();
+            redisService.setListToZSet("article:ids", articleIds);
+        } catch (Exception e) {
+            log.error("同步文章ID到Redis失败", e);
+        }
     }
 
     @Override
+    @Transactional
     public void updateArticle(ArticleVO articleVO) {
         articleDao.updateById(Article.builder()
                 .id(articleVO.getId())
@@ -215,11 +239,12 @@ public class ArticleServiceImpl implements ArticleService {
                 .isTop(articleVO.getIsTop())
                 .createAt(articleVO.getCreateAt())
                 .build());
-        buildArticleTag(articleVO.getId(),articleVO.getTags());
+        buildArticleTag(articleVO.getId(), articleVO.getTags());
+        setArticleIdsRedis();
     }
 
     public Long getCategoryId(String name) {
-        if(name==null) {
+        if (name == null) {
             return null;
         }
         LambdaQueryWrapper<Categories> clqw = new LambdaQueryWrapper<Categories>()
@@ -235,7 +260,7 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     public void buildArticleTag(Long articleId, List<String> tags) {
-        if(tags==null) {
+        if (tags == null) {
             return;
         }
         tags.forEach(tag -> {
@@ -246,15 +271,16 @@ public class ArticleServiceImpl implements ArticleService {
                         .build());
                 selectTag = tagDao.selectOneTag(tag);
             }
-        try {
-            tagDao.addArticleTagRel(articleId, selectTag.getId());
-        }catch (Exception e) {
-        }
+            try {
+                tagDao.addArticleTagRel(articleId, selectTag.getId());
+            } catch (Exception e) {
+                log.warn("文章标签关联已存在或插入失败: articleId={}, tagId={}", articleId, selectTag.getId());
+            }
         });
-
     }
 
     @Override
+    @Transactional
     public void saveArticle(ArticleVO articleVO) {
         articleDao.insert(
                 Article.builder()
@@ -271,18 +297,20 @@ public class ArticleServiceImpl implements ArticleService {
         Article savedArticle = articleDao.selectOne(new LambdaQueryWrapper<Article>()
                 .eq(Article::getTitle, articleVO.getTitle()));
         buildArticleTag(savedArticle.getId(), articleVO.getTags());
+        setArticleIdsRedis();
     }
 
     @Override
     public int deleteArticleById(Long id) {
-        return articleDao.deleteById(id);
+        int result = articleDao.deleteById(id);
+        setArticleIdsRedis();
+        return result;
     }
 
     @Override
     public List<ArticleBaseDTO> getArticlesByTagId(Long tagId, Integer pageNum) {
         return articleDao.selectArticleByTagId(tagId, (pageNum - 1) * 10);
     }
-
 
     @Override
     public NeighborArticleDTO getPrevArticle(Long articleId) {
@@ -305,10 +333,11 @@ public class ArticleServiceImpl implements ArticleService {
         return articleDao.selectNeighborArticleById(nextArticleId);
     }
 
-
     @Override
     public int deleteArticleByIds(List<Long> ids) {
-        return articleDao.deleteBatchIds(ids);
+        int result = articleDao.deleteBatchIds(ids);
+        setArticleIdsRedis();
+        return result;
     }
 
     @Override
@@ -329,6 +358,7 @@ public class ArticleServiceImpl implements ArticleService {
     @Override
     public void recoveryDelArticle(Long id) {
         articleDao.updateDelete(id);
+        setArticleIdsRedis();
     }
 
     @Override

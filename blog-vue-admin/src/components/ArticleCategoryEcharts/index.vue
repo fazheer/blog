@@ -17,13 +17,14 @@ import type {PieSeriesOption} from 'echarts/charts'
 import {PieChart,} from 'echarts/charts';
 import {LabelLayout} from 'echarts/features';
 import {CanvasRenderer} from 'echarts/renderers';
-import {onMounted, ref} from "vue";
+import {onMounted, onUnmounted, ref} from "vue";
 import api from "@/api";
 
 const categoriesData = ref<Array<{
   value:number
   name:string,
 }>>(new Array<{name: string; value: number}>())
+let myChart: echarts.ECharts | null = null
 const GetData = ()=>{
   api.getCategoriesCard().then(({data:{data}})=>{
   const d= data as Array<{name:string,count:number}>
@@ -33,7 +34,7 @@ const GetData = ()=>{
         value:item.count
       })
     })
-    const myChart = echarts.init(document.getElementById('pie')!,'light')
+    myChart = echarts.init(document.getElementById('pie')!,'light')
     option && myChart.setOption(option);
   })
 
@@ -96,6 +97,10 @@ const option: EChartsOption= {
 onMounted(() => {
   GetData()
 
+})
+
+onUnmounted(() => {
+  myChart?.dispose()
 })
 
 

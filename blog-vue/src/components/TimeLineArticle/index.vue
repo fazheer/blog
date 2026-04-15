@@ -1,10 +1,9 @@
 <script setup lang="ts">
 import {ref, onMounted, watch} from 'vue';
 import Circle12Regular from '@vicons/fluent/Circle12Regular'
-import 'md-editor-v3/lib/style.css';
 import { NTimeline, NTimelineItem,NIcon,NPagination } from 'naive-ui';
 import TimeLineItem from '@/components/timeLineItem'
-import api from "@/api";
+import * as api from "@/api";
 import type {BaseArticleCard, BaseArticleYear} from "@/type";
 const page = ref(1)
 const pageCount =ref(1)
@@ -44,6 +43,7 @@ const GetTagArticleYear = (pageNum:bigint)=>{
 }
 const handelData = ()=>{
   handledData.value = []
+  if (articleYears.value.length === 0) return;
   let first = articleYears.value[0].year;
   handledData.value.push({
     id:0n,

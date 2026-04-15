@@ -1,14 +1,12 @@
 <script setup lang="ts">
 import { Search, Home, ListCircle, ChevronDown, PaperPlane, Planet, List, Train } from '@vicons/ionicons5';
 import { NButton } from 'naive-ui';
-import { onMounted, ref } from 'vue';
+import { onMounted, ref, onUnmounted } from 'vue';
 import Logo from './items/Logo.vue';
 import PageMenuItem from './items/PageMenuItem.vue';
 const menuBar = ref<HTMLElement>();
   const buttonColor = ref('#eee')
-onMounted(() => {
-
-  window.addEventListener('wheel', (e: WheelEvent) => {
+const handleWheel = (e: WheelEvent) => {
     const dom = menuBar.value as HTMLElement;
     if (e.deltaY < 0) {
       if (document.documentElement.scrollTop == 0) {
@@ -29,9 +27,13 @@ onMounted(() => {
       buttonColor.value = "#000"
 
     }
-  })
-}
-)
+  }
+onMounted(() => {
+  window.addEventListener('wheel', handleWheel)
+})
+onUnmounted(() => {
+  window.removeEventListener('wheel', handleWheel)
+})
 </script>
 <template>
   <div class="site-menu" ref='menuBar' id="menu-bar">

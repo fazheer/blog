@@ -12,7 +12,7 @@
     </Page>
 </template>
 <script setup lang="ts">
-import api from "@/api";
+import * as api from "@/api";
 import type {Category} from "@/type";
 import {ref, onMounted} from 'vue';
 import Page from '@/components/page';
@@ -55,10 +55,6 @@ const categories = ref<Array<Category>>()
     background: 0 0;
     content: '';
     cursor: pointer;
-    -webkit-transition: all .3s ease-out;
-    -moz-transition: all .3s ease-out;
-    -o-transition: all .3s ease-out;
-    -ms-transition: all .3s ease-out;
     transition: all .3s ease-out;
 }
 
@@ -73,10 +69,6 @@ const categories = ref<Array<Category>>()
     background: 0 0;
     content: '';
     cursor: pointer;
-    -webkit-transition: all .3s ease-out;
-    -moz-transition: all .3s ease-out;
-    -o-transition: all .3s ease-out;
-    -ms-transition: all .3s ease-out;
     transition: all .3s ease-out;
 }
 .categories-item:hover{

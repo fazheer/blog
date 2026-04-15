@@ -34,7 +34,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         lqw.eq(User::getUsername, username);
         User user = userDao.selectOne(lqw);
         if (Objects.isNull(user)) {
-            throw new RuntimeException("用户名错误");
+            throw new UsernameNotFoundException("用户名错误");
         }
         List<String> perms = menuDao.selectPermByUserId(user.getId());
         return LoginUserDTO.builder()

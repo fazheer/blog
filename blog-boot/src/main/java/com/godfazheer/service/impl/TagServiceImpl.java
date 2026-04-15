@@ -8,6 +8,7 @@ import com.godfazheer.model.vo.TagVO;
 import com.godfazheer.service.TagService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -35,6 +36,7 @@ public class TagServiceImpl implements TagService {
     }
 
     @Override
+    @Transactional
     public void delTags(List<Long> tagIds) {
         tagDao.delArticleRel(tagIds);
         tagDao.deleteBatchIds(tagIds);

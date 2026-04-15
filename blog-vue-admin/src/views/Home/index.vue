@@ -17,7 +17,7 @@ import {NLayout, NLayoutContent, NLoadingBarProvider, useLoadingBar} from "naive
 import {useProviderStore} from "@/stores/provider";
 import {defineComponent, h} from "vue";
 import MenuComponent from '@/components/menu'
-import NavBar from '@/components/navNar'
+import NavBar from '@/components/navBar'
 
 const provider = useProviderStore()
 const MainRouterView = defineComponent({

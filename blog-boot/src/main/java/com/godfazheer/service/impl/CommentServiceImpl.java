@@ -9,6 +9,7 @@ import com.godfazheer.model.dto.comment.*;
 import com.godfazheer.service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -75,7 +76,7 @@ public class CommentServiceImpl implements CommentService {
     public int saveReply(ReplyDTO replyDTO) {
         Reply reply = Reply.builder()
                 .name(replyDTO.getName())
-                .email(replyDTO.getUrl())
+                .email(replyDTO.getEmail())
                 .url(replyDTO.getUrl())
                 .content(replyDTO.getContent())
                 .createAt(replyDTO.getCreateAt())
@@ -89,13 +90,14 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
+    @Transactional
     public void deleteCommentById(Long id) {
         commentDao.deleteById(id);
         replyDao.deleteById(id);
-
     }
 
     @Override
+    @Transactional
     public void deleteCommentByIds(List<Long> ids) {
         commentDao.deleteBatchIds(ids);
         replyDao.deleteBatchIds(ids);

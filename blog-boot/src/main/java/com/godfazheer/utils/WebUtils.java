@@ -1,9 +1,11 @@
 package com.godfazheer.utils;
 
 import jakarta.servlet.http.HttpServletResponse;
+import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
 
+@Slf4j
 public class WebUtils
 {
     /**
@@ -23,7 +25,7 @@ public class WebUtils
         }
         catch (IOException e)
         {
-            e.printStackTrace();
+            log.error("渲染字符串到客户端失败", e);
         }
         return null;
     }

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { AlbumsOutline } from '@vicons/ionicons5'
 import { NCard,NIcon} from "naive-ui";
-import api from '@/api'
+import * as api from '@/api'
 import {onMounted, ref} from "vue";
 import type {CategoryCard} from "@/type";
 import CategoryCardItem from "@/components/CategoryCardItem";

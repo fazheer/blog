@@ -35,7 +35,7 @@
 <script lang="ts" setup>
 import anime from "animejs/lib/anime.es.js"
 import VRouter from '@/router'
-import {onMounted, ref} from "vue";
+import {onMounted, onUnmounted, ref} from "vue";
 import type {User} from "@/type";
 import api from "@/api";
 import {useMessage} from 'naive-ui'
@@ -61,137 +61,51 @@ const login = function () {
     }
   })
 }
-// 定义一个anime对象
-onMounted(() => {
-  let an: anime.AnimeInstance | null = null;
-  document.querySelector('#account')?.addEventListener('click', function () {
-    if (an) {
-      // 如果已存在anime动画,先暂停正在运行的动画
-      an.pause();
-    }
-    // 构造一个动画对象
-    an = anime({
-      targets: 'path',
-      strokeDashoffset: {
-        value: 0,
-        duration: 700,
-        easing: 'easeOutQuart'
-      },
-      strokeDasharray: {
-        value: '240 1386',
-        duration: 700,
-        easing: 'easeOutQuart'
-      }
-    });
-    // 绑定账号输入框的点击事件
-    // 绑定密码输入框的点击事件
-    document.querySelector('#password')?.addEventListener('click', function () {
-      if (an) {
-        // 如果已存在anime动画,先暂停正在运行的动画
-        an.pause();
-      }
-      // 构造一个动画对象
-      an = anime({
-        targets: 'path',
-        strokeDashoffset: {
-          value: -336,
-          duration: 700,
-          easing: 'easeOutQuart'
-        },
-        strokeDasharray: {
-          value: '240 1386',
-          duration: 700,
-          easing: 'easeOutQuart'
-        }
-      });
-    });
-    // 绑定登录按钮的鼠标移入事件
-    document.querySelector('#submit')?.addEventListener('mouseover', function () {
-      if (an) {
-        // 如果已存在anime动画,先暂停正在运行的动画
-        an.pause();
-      }
-      // 构造一个动画对象
-      an = anime({
-        targets: 'path',
-        strokeDashoffset: {
-          value: -730,
-          duration: 700,
-          easing: 'easeOutQuart'
-        },
-        strokeDasharray: {
-          value: '530 1386',
-          duration: 700,
-          easing: 'easeOutQuart'
-        }
-      });
-    });
-    // 优化一下,输入框和登录按钮获取焦点也给动画
-    // 绑定账号输入框的获取焦点事件
-    document.querySelector('#account')?.addEventListener('focus', function () {
-      if (an) {
-        // 如果已存在anime动画,先暂停正在运行的动画
-        an.pause();
-      }
-      // 构造一个动画对象
-      an = anime({
-        targets: 'path',
-        strokeDashoffset: {
-          value: 0,
-          duration: 700,
-          easing: 'easeOutQuart'
-        },
-        strokeDasharray: {
-          value: '240 1386',
-          duration: 700,
-          easing: 'easeOutQuart'
-        }
-      });
-    });
-    // 绑定密码输入框的获取焦点事件
-    document.querySelector('#password')?.addEventListener('focus', function () {
-      if (an) {
-        // 如果已存在anime动画,先暂停正在运行的动画
-        an.pause();
-      }
-      // 构造一个动画对象
-      an = anime({
-        targets: 'path',
-        strokeDashoffset: {
-          value: -336,
-          duration: 700,
-          easing: 'easeOutQuart'
-        },
-        strokeDasharray: {
-          value: '240 1386',
-          duration: 700,
-          easing: 'easeOutQuart'
-        }
-      });
-    });
-    // 绑定登录按钮的获取焦点事件
-    document.querySelector('#submit')?.addEventListener('focus', function () {
-      if (an) {
-        // 如果已存在anime动画,先暂停正在运行的动画
-        an.pause();
-      }
-      // 构造一个动画对象
-      an = anime({
-        targets: 'path',
-        strokeDashoffset: {
-          value: -730,
-          duration: 700,
-          easing: 'easeOutQuart'
-        },
-        strokeDasharray: {
-          value: '530 1386',
-          duration: 700,
-          easing: 'easeOutQuart'
-        }
-      });
-    });
 
+let an: anime.AnimeInstance | null = null;
+
+const playAnimation = (strokeDashoffset: number, strokeDasharray: string) => {
+  if (an) {
+    an.pause();
+  }
+  an = anime({
+    targets: 'path',
+    strokeDashoffset: {
+      value: strokeDashoffset,
+      duration: 700,
+      easing: 'easeOutQuart'
+    },
+    strokeDasharray: {
+      value: strokeDasharray,
+      duration: 700,
+      easing: 'easeOutQuart'
+    }
   });
+}
+
+const handleAccountClick = () => playAnimation(0, '240 1386')
+const handlePasswordClick = () => playAnimation(-336, '240 1386')
+const handleSubmitMouseOver = () => playAnimation(-730, '530 1386')
+const handleAccountFocus = () => playAnimation(0, '240 1386')
+const handlePasswordFocus = () => playAnimation(-336, '240 1386')
+const handleSubmitFocus = () => playAnimation(-730, '530 1386')
+
+onMounted(() => {
+  document.querySelector('#account')?.addEventListener('click', handleAccountClick)
+  document.querySelector('#password')?.addEventListener('click', handlePasswordClick)
+  document.querySelector('#submit')?.addEventListener('mouseover', handleSubmitMouseOver)
+  document.querySelector('#account')?.addEventListener('focus', handleAccountFocus)
+  document.querySelector('#password')?.addEventListener('focus', handlePasswordFocus)
+  document.querySelector('#submit')?.addEventListener('focus', handleSubmitFocus)
+})
+
+onUnmounted(() => {
+  document.querySelector('#account')?.removeEventListener('click', handleAccountClick)
+  document.querySelector('#password')?.removeEventListener('click', handlePasswordClick)
+  document.querySelector('#submit')?.removeEventListener('mouseover', handleSubmitMouseOver)
+  document.querySelector('#account')?.removeEventListener('focus', handleAccountFocus)
+  document.querySelector('#password')?.removeEventListener('focus', handlePasswordFocus)
+  document.querySelector('#submit')?.removeEventListener('focus', handleSubmitFocus)
 })
 
 </script>

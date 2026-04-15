@@ -4,12 +4,11 @@ import {ref, onMounted, reactive, watch} from 'vue';
 import {ListCircle, CalendarClear} from '@vicons/ionicons5'
 import {NIcon, NCard, NDivider,NMessageProvider} from 'naive-ui';
 import MdEditor from 'md-editor-v3';
-import 'md-editor-v3/lib/style.css';
 import type {TocItem} from 'md-editor-v3/lib/MdEditor/extensions/MdCatalog';
 import PaginationPost from "@/components/Post/PaginationPost.vue";
 import Comment from "@/components/comment";
 import Banner from "@/components/banner";
-import api from "@/api";
+import * as api from "@/api";
 import type {Article} from "@/type";
 import {useRouter, useRoute} from "vue-router";
 const route = useRoute()
@@ -44,10 +43,11 @@ const article = ref<Article>({
 
 })
 onMounted(() => {
-GetArticle(articleId)
+  scrollElement.value = document.documentElement;
+  GetArticle(articleId)
 })
 watch(()=>route.params.id,()=>{
-  router.go(0)
+  GetArticle(BigInt(route.params.id))
 })
 
 const MdCatalog = MdEditor.MdCatalog;
@@ -56,7 +56,7 @@ const state = ref({
   id: "post-content",
   theme: 'light'
 })
-const scrollElement = document.documentElement;
+const scrollElement = ref<HTMLElement>();
 const onClick = (e: MouseEvent, t: TocItem) => {
   history.replaceState({}, '', `${location.pathname}#${t.text}`);
   let menuBar = document.getElementById('menu-bar');

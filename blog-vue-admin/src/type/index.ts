@@ -1,53 +1,53 @@
 export type RouterTag = {
-    name:String
-    path:String
+    name:string
+    path:string
 }
 export type BreadcrumbItem = {
-    name:String
+    name:string
 }
 export type User={
-    username:String
-    password:String
+    username:string
+    password:string
 }
 export type ArticleDTO = {
     id: bigint
-    coverUrl: String
-    title: String
-    content:String|null|undefined
-    categoryName: String
-    tags:Array<String>|undefined
+    coverUrl: string
+    title: string
+    content:string|null|undefined
+    categoryName: string
+    tags:Array<string>|undefined
     views:bigint
     createAt: Date|undefined
     isTop: boolean
 }
 export type ArticleVO  ={
     id:bigint|null
-    title:String
-    coverUrl:String|null
-    content:String|null
-    createAt:String
-    categoryName:String|null
-    tags:Array<String>|null
+    title:string
+    coverUrl:string|null
+    content:string|null
+    createAt:string
+    categoryName:string|null
+    tags:Array<string>|null
     status:number
-    isTop:Boolean
+    isTop:boolean
 }
 export type CategoryCount = {
     id:bigint
-    name:String
+    name:string
     count:bigint
 }
 export type Tag = {
     id:bigint
-    name:String
+    name:string
     count:bigint
 }
 export type Comment = {
     id:bigint
-    avatarUrl:String
-    name:String
-    email:String
-    url:String
-    content:String
+    avatarUrl:string
+    name:string
+    email:string
+    url:string
+    content:string
     love:bigint
     createAt:Date
 }
@@ -65,20 +65,20 @@ export type CommentCount = {
 }
 export type SelectOption = {
     id:bigint
-    name:String
+    name:string
 }
 export type Setting = {
-     avatarUrl:String
-     adminAvatar:String
-     jiaokerAvatar:String
-     projectUrl:String
-     email:String
-     siteName:String
-     typingWord:String
-     name:String
-     personalProfile:String
-     buildTime:String
-     notice:String
-     icp:String
-     gov:String
+     avatarUrl:string
+     adminAvatar:string
+     jiaokerAvatar:string
+     projectUrl:string
+     email:string
+     siteName:string
+     typingWord:string
+     name:string
+     personalProfile:string
+     buildTime:string
+     notice:string
+     icp:string
+     gov:string
 }

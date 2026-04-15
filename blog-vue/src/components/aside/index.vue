@@ -9,7 +9,7 @@ import TagBox from '@/components/aside-card/Tag'
 import InfoBox from '@/components/aside-card/Info'
 import {onMounted, ref} from "vue";
 import type {SiteInfo} from "@/type";
-import api from "@/api";
+import * as api from "@/api";
 const siteInfo = ref<SiteInfo>({
   articleCount: 0n,
   avatarUrl: "",
@@ -26,7 +26,7 @@ const siteInfo = ref<SiteInfo>({
 
 })
 const GetSiteInfo = ()=>{
-  api.getSieInfo().then(({data:{data}})=>{
+  api.getSiteInfo().then(({data:{data}})=>{
     siteInfo.value=data
   })
 }

@@ -18,7 +18,6 @@ import Aside from '@/components/aside';
 import { ref, onMounted } from 'vue';
 import { NIcon, NCard, NDivider } from 'naive-ui';
 import MdEditor from 'md-editor-v3';
-import 'md-editor-v3/lib/style.css';
 import Banner from "@/components/banner";
 import PageTitle from './pageTitle';
 

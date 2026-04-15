@@ -15,7 +15,7 @@ public class SaveSiteViewHandler {
     private InfoDao infoDao;
     @Scheduled(cron = "00 55 23 * * ?")
     public void saveSiteView() throws JsonProcessingException {
-        Long view = redisService.getObejct("sys:view", Long.class);
+        Long view = redisService.getObject("sys:view", Long.class);
         infoDao.updateAllView(view);
         infoDao.saveView(view);
         redisService.setObject("sys:view", 0L);

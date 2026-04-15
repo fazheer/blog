@@ -2,6 +2,7 @@ package com.godfazheer.dao;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.godfazheer.entity.Tag;
+import com.godfazheer.model.dto.ArticleTagDTO;
 import com.godfazheer.model.dto.TagCardDTO;
 import com.godfazheer.model.dto.TagDTO;
 import org.apache.ibatis.annotations.Param;
@@ -19,6 +20,7 @@ import java.util.List;
  */
 public interface TagDao extends BaseMapper<Tag> {
     List<String> selectTagNameByArticleId(Long articleId);
+    List<ArticleTagDTO> selectTagNameByArticleIds(@Param("articleIds") List<Long> articleIds);
     @Select("select * from tbl_tag")
     List<TagDTO> selectList();
     void addArticleTagRel(@Param("articleId") Long articleId,@Param("tagId") Long tagId);

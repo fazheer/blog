@@ -6,6 +6,8 @@ import type {Comment} from "@/type";
 import {useDeletedIdsStore} from "@/stores/DeletedIdsStore";
 import api from "@/api";
 
+const DEFAULT_AVATAR = 'https://s2.loli.net/2022/04/07/1HolLJn4tfzvqEU.jpg'
+
 const props = defineProps<{
   comment:Comment
   allChecked: boolean
@@ -45,7 +47,7 @@ watch(()=>checked.value,()=>{
         <n-checkbox v-model:checked="checked" @on-update:checked="checked=!checked"/>
       </td>
       <td style="width: 50px;height: 10px;">
-        <NAvatar src="https://s2.loli.net/2022/04/07/1HolLJn4tfzvqEU.jpg" round size="large"/>
+        <NAvatar :src="comment.avatarUrl || DEFAULT_AVATAR" round size="large"/>
       </td>
       <td>{{ comment.name}}</td>
       <td>{{ comment.email }}</td>

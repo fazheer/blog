@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { PricetagOutline } from '@vicons/ionicons5'
 import {NCard, NIcon ,NSpace,NGradientText} from "naive-ui";
-import api from '@/api'
+import * as api from '@/api'
 import {ref,onMounted} from "vue";
 interface Tag {
     id:bigint,
@@ -13,7 +13,7 @@ const typeData: String[] = ["error", "primary", "info", "success", "warning", "d
 
 function randomColor(): itemType {
 
-  const index = Math.floor(Math.random() * 5 + 1);
+  const index = Math.floor(Math.random() * typeData.length);
   return typeData[index] as itemType
 }
 const GetTags = () =>{

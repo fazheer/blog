@@ -1,6 +1,6 @@
 package com.godfazheer.controller;
 
-import com.godfazheer.model.CategoryCardDTO;
+import com.godfazheer.model.dto.CategoryCardDTO;
 import com.godfazheer.model.dto.ArchiveCardDTO;
 import com.godfazheer.model.dto.CategoriesDTO;
 import com.godfazheer.model.vo.CategoriesVO;
@@ -25,54 +25,54 @@ import java.util.List;
 @RequestMapping("/categories")
 public class CategoriesController {
     @Autowired
-    private CategoriesServiceImpl classifyingService;
+    private CategoriesServiceImpl categoriesService;
 
     @GetMapping
     @ResponseBody
     @PermitAll
     public ResultVO<?> getCategories() {
-        List<CategoriesDTO> categoriesDTOS = classifyingService.getCategories();
+        List<CategoriesDTO> categoriesDTOS = categoriesService.getCategories();
         return ResultVO.ok(categoriesDTOS);
     }
     @GetMapping("/card")
     @ResponseBody
     @PermitAll
     public ResultVO<?> getCategoryCard() {
-        List<CategoryCardDTO> categoryCardDTOS = classifyingService.getCategoryCard();
+        List<CategoryCardDTO> categoryCardDTOS = categoriesService.getCategoryCard();
         return ResultVO.ok(categoryCardDTOS);
     }
     @GetMapping("/card/count")
     @ResponseBody
     @PermitAll
     public ResultVO<?> getCategoryCardCount() {
-        Long count = classifyingService.getCategoryCardCount();
+        Long count = categoriesService.getCategoryCardCount();
         return ResultVO.ok(count);
     }
     @GetMapping("/card/admin/{pageNum}")
     @ResponseBody
     @PermitAll
     public ResultVO<?> getAdminCategoryCard(@PathVariable("pageNum") Long pageNum) {
-        List<CategoryCardDTO> categoryCardDTOS = classifyingService.getAdminCategoryCard(pageNum);
+        List<CategoryCardDTO> categoryCardDTOS = categoriesService.getAdminCategoryCard(pageNum);
         return ResultVO.ok(categoryCardDTOS);
     }
     @GetMapping("/card/admin/name/{name}/page/{pageNum}")
     @ResponseBody
     @PermitAll
     public ResultVO<?> getAdminCategoryCardByName(@PathVariable("name") String name,@PathVariable("pageNum") Long pageNum) {
-        List<CategoryCardDTO> categoryCardDTOS = classifyingService.getAdminCategoryCardByName(name,pageNum);
+        List<CategoryCardDTO> categoryCardDTOS = categoriesService.getAdminCategoryCardByName(name,pageNum);
         return ResultVO.ok(categoryCardDTOS);
     } @GetMapping("/card/admin/name/{name}")
     @ResponseBody
     @PermitAll
     public ResultVO<?> getAdminCategoryCardCountByName(@PathVariable("name") String name) {
-        Long count = classifyingService.getAdminCategoryCardByNameCount(name);
+        Long count = categoriesService.getAdminCategoryCardByNameCount(name);
         return ResultVO.ok(count);
     }
     @GetMapping("/archive")
     @ResponseBody
     @PermitAll
     public ResultVO<?> getArchiveCard() {
-        List<ArchiveCardDTO> archiveCard = classifyingService.getArchiveCard();
+        List<ArchiveCardDTO> archiveCard = categoriesService.getArchiveCard();
         return ResultVO.ok(archiveCard);
     }
 
@@ -80,7 +80,7 @@ public class CategoriesController {
     @ResponseBody
     @PreAuthorize("hasAuthority('sys:category:del')")
     public ResultVO<?> delCategories(@RequestBody List<Long> ids) {
-        classifyingService.delCategories(ids);
+        categoriesService.delCategories(ids);
         return ResultVO.ok();
     }
 
@@ -88,7 +88,7 @@ public class CategoriesController {
     @ResponseBody
     @PreAuthorize("hasAuthority('sys:category:save')")
     public ResultVO<?> saveCategories(@RequestBody CategoriesVO categoriesVO) {
-        classifyingService.saveCategories(categoriesVO);
+        categoriesService.saveCategories(categoriesVO);
         return ResultVO.ok();
     }
 
@@ -96,7 +96,7 @@ public class CategoriesController {
     @ResponseBody
     @PreAuthorize("hasAuthority('sys:category:update')")
     public ResultVO<?> updateCategories(@RequestBody CategoriesVO categoriesVO) {
-        classifyingService.updateCategories(categoriesVO);
+        categoriesService.updateCategories(categoriesVO);
         return ResultVO.ok();
     }
 }

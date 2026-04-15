@@ -22,6 +22,8 @@ public class UserServiceImpl implements UserService {
     AuthenticationManager authenticationManager;
     @Autowired
     private RedisServiceImpl redisService;
+    @Autowired
+    private JwtUtils jwtUtils;
     @Override
     public Map<String,String> login(UserVO userVO) throws JsonProcessingException {
         UsernamePasswordAuthenticationToken authenticationToken = new
@@ -38,7 +40,7 @@ public class UserServiceImpl implements UserService {
         map.put("userId",userId);
         map.put("username",username);
         HashMap<String, String> result = new HashMap<>();
-        result.put("token",JwtUtils.generateJwtToken(map));
+        result.put("token",jwtUtils.generateJwtToken(map));
         result.put("avatarUrl",loginUserDTO.getAvatar());
         return result;
     }

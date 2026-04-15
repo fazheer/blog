@@ -2,12 +2,15 @@ package com.godfazheer.utils;
 
 import eu.bitwalker.useragentutils.UserAgent;
 import jakarta.servlet.http.HttpServletRequest;
+import lombok.extern.slf4j.Slf4j;
 import org.lionsoul.ip2region.xdb.Searcher;
 
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+@Slf4j
 
 public class IPUtils {
     public static String getIpAddr(HttpServletRequest request) {
@@ -44,29 +47,39 @@ public class IPUtils {
         Matcher m = r.matcher(ip);
         return m.matches();
     }
-    public static String getIpInfo(String ip) throws Exception {
-       String dbPath = System.getProperty("user.dir")+"/ip2region/ip2region.xdb";
-        byte[] buffer = new byte[0];
+    private static volatile Searcher SEARCHER;
 
-        try {
-            buffer = Searcher.loadContentFromFile(dbPath);
-        } catch (IOException e) {
-            System.out.printf("failed to create searcher : %s\n", e);
+    private static Searcher getSearcher() {
+        if (SEARCHER == null) {
+            synchronized (IPUtils.class) {
+                if (SEARCHER == null) {
+                    String dbPath = System.getProperty("user.dir") + "/ip2region/ip2region.xdb";
+                    try {
+                        byte[] buffer = Searcher.loadContentFromFile(dbPath);
+                        SEARCHER = Searcher.newWithBuffer(buffer);
+                    } catch (IOException e) {
+                        log.error("failed to create searcher : {}", e.getMessage(), e);
+                    }
+                }
+            }
         }
+        return SEARCHER;
+    }
 
-        // 2、查询
-        Searcher searcher =Searcher.newWithBuffer(buffer);
+    public static String getIpInfo(String ip) throws Exception {
+        Searcher searcher = getSearcher();
+        if (searcher == null) {
+            return "未知";
+        }
         try {
             long sTime = System.nanoTime();
             String region = searcher.search(ip);
             long cost = TimeUnit.NANOSECONDS.toMicros(System.nanoTime() - sTime);
-            System.out.printf("{region: %s, ioCount: %d, took: %d μs}\n", region, searcher.getIOCount(), cost);
+            log.debug("{{region: {}, ioCount: {}, took: {} μs}}", region, searcher.getIOCount(), cost);
             return region;
         } catch (Exception e) {
-            System.out.printf("failed to search(%s): %s\n", ip, e);
+            log.error("failed to search({}): {}", ip, e.getMessage(), e);
         }
-        // 3、关闭资源
-        searcher.close();
         return "未知";
     }
     public static String getCityName(String ipInfo) {
@@ -86,7 +99,7 @@ public class IPUtils {
         String browser= agent.getBrowser()+" "+agent.getBrowserVersion();
         String ops =agent.getOperatingSystem().getName();
         String result = cityName+" | "+browser+" | "+ops;
-        System.out.println(result);
+        log.debug("IP信息: {}", result);
         return org.apache.commons.lang3.StringUtils.split(result,"|");
     }
 

@@ -2,7 +2,7 @@ package com.godfazheer.dao;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.godfazheer.entity.Categories;
-import com.godfazheer.model.CategoryCardDTO;
+import com.godfazheer.model.dto.CategoryCardDTO;
 import com.godfazheer.model.dto.ArchiveCardDTO;
 import com.godfazheer.model.dto.CategoriesDTO;
 import org.apache.ibatis.annotations.Param;

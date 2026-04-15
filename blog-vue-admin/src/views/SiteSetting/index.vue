@@ -6,6 +6,7 @@ import api from "@/api";
 import {useTokenStore} from "@/stores/useTokenStore";
 import type {Setting} from "@/type";
 import jsonBig from "json-bigint";
+import {AVATAR_UPLOAD_URL} from "@/config/upload";
 
 const message = useMessage()
 const setting = ref<Setting>(
@@ -43,7 +44,7 @@ const UpdateSetting = () => {
     }
   })
 }
-const handleUploadSiteAvatarFinish = (options: {
+const handleUploadFinish = (field: 'avatarUrl' | 'adminAvatar' | 'jiaokerAvatar', options: {
   file: UploadFileInfo
   event?: ProgressEvent
 }) => {
@@ -58,48 +59,8 @@ const handleUploadSiteAvatarFinish = (options: {
     } else {
       message.error("操作失败")
     }
-    setting.value.avatarUrl=data.data
-    options.file.url =data.data
-  }
-  return options.file
-}
-const handleUploadAdminAvatarFinish = (options: {
-  file: UploadFileInfo
-  event?: ProgressEvent
-}) => {
-  if (options.file.status == 'finished') {
-    const response = (options.event?.target as XMLHttpRequest).response
-    const data = jsonBig.parse(
-        response)
-    if (data.code == 10000) {
-      message.success("添加成功！")
-    } else if (data.code == 30001) {
-      message.error("没有权限!")
-    } else {
-      message.error("操作失败")
-    }
-    setting.value.adminAvatar=data.data
-    options.file.url =data.data
-  }
-  return options.file
-}
-const handleUploadJiaokerAvatarFinish = (options: {
-  file: UploadFileInfo
-  event?: ProgressEvent
-}) => {
-  if (options.file.status == 'finished') {
-    const response = (options.event?.target as XMLHttpRequest).response
-    const data = jsonBig.parse(
-        response)
-    if (data.code == 10000) {
-      message.success("添加成功！")
-    } else if (data.code == 30001) {
-      message.error("没有权限!")
-    } else {
-      message.error("操作失败")
-    }
-    setting.value.jiaokerAvatar=data.data
-    options.file.url =data.data
+    setting.value[field] = data.data
+    options.file.url = data.data
   }
   return options.file
 }
@@ -117,9 +78,9 @@ onMounted(() => {
           <div class="text-container">网站头像</div>
           <n-upload
               v-if="setting.avatarUrl!=''"
-              action="https://www.jiaoker.cn/api/file/avatar"
+              :action="AVATAR_UPLOAD_URL"
               :default-file-list="[{
-                id: 'fuck',
+                id: 'siteAvatar',
                 name: 'siteAvatar',
                 status: 'finished',
                 url: `${setting.avatarUrl}`}
@@ -127,7 +88,7 @@ onMounted(() => {
               :headers="{
                 'token':`${useTokenStore().avatarToken.token}`,
                 }"
-              @finish="handleUploadSiteAvatarFinish"
+              @finish="(options) => handleUploadFinish('avatarUrl', options)"
               list-type="image-card"
               :max="1"
           >
@@ -137,9 +98,9 @@ onMounted(() => {
           <div class="text-container">用户头像</div>
           <n-upload
               v-if="setting.avatarUrl!=''"
-              action="https://www.jiaoker.cn/api/file/avatar"
+              :action="AVATAR_UPLOAD_URL"
               :default-file-list="[{
-                id: 'fuck',
+                id: 'adminAvatar',
                 name: 'siteAvatar',
                 status: 'finished',
                 url: `${setting.adminAvatar}`}
@@ -147,7 +108,7 @@ onMounted(() => {
               :headers="{
                 'token':`${useTokenStore().avatarToken.token}`,
                 }"
-              @finish="handleUploadAdminAvatarFinish"
+              @finish="(options) => handleUploadFinish('adminAvatar', options)"
               list-type="image-card"
               :max="1"
           >
@@ -157,9 +118,9 @@ onMounted(() => {
           <div class="text-container">游客头像</div>
           <n-upload
               v-if="setting.avatarUrl!=''"
-              action="https://www.jiaoker.cn/api/file/avatar"
+              :action="AVATAR_UPLOAD_URL"
               :default-file-list="[{
-                id: 'fuck',
+                id: 'jiaokerAvatar',
                 name: 'siteAvatar',
                 status: 'finished',
                 url: `${setting.jiaokerAvatar}`}
@@ -167,7 +128,7 @@ onMounted(() => {
               :headers="{
                 'token':`${useTokenStore().avatarToken.token}`,
                 }"
-              @finish="handleUploadJiaokerAvatarFinish"
+              @finish="(options) => handleUploadFinish('jiaokerAvatar', options)"
               list-type="image-card"
               :max="1"
           >

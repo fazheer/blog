@@ -89,13 +89,11 @@ const router = createRouter({
         }
     }
 })
-router.beforeEach((to,from,next) => {
+router.beforeEach((to, from) => {
   if(to.path!='/login' && (useTokenStore().avatarToken.token=='expired' &&useTokenStore().avatarToken==undefined ||useTokenStore().avatarToken.token=="")) {
-      next('/login')
-  }else {
-      next()
+      return '/login'
   }
-    useProviderStore().loadingBar?.start()
+  useProviderStore().loadingBar?.start()
 })
 router.afterEach(() => {
     useProviderStore().loadingBar?.finish()

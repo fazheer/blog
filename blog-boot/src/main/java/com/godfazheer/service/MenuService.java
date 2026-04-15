@@ -8,6 +8,8 @@ package com.godfazheer.service;
  * @author M-Y-H
  * @since 2023-05-01
  */
-public interface MenuService{
+import com.godfazheer.entity.Menu;
 
+public interface MenuService {
+    int saveMenu(Menu menu);
 }

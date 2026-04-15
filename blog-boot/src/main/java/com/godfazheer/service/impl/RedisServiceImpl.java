@@ -59,7 +59,7 @@ public class RedisServiceImpl  implements RedisService {
     }
 
     @Override
-    public <T> T getObejct(String key, Class<T> type) throws JsonProcessingException {
+    public <T> T getObject(String key, Class<T> type) throws JsonProcessingException {
         String data = stringRedisTemplate.opsForValue().get(key);
         return JacksonUtils.mapper.readValue(data, type);
     }

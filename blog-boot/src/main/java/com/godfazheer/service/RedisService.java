@@ -21,7 +21,7 @@ public interface RedisService {
 
     <T> void setObject(String key, T data, Integer timeout, TimeUnit timeUnit) throws JsonProcessingException;
 
-    <T> T getObejct(String key, Class<T> type) throws JsonProcessingException;
+    <T> T getObject(String key, Class<T> type) throws JsonProcessingException;
 
     <T> long setHash(String key, String hashKey, T value) throws JsonProcessingException;
 

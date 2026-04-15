@@ -7,6 +7,7 @@ import com.godfazheer.model.vo.ReplyVO;
 import com.godfazheer.model.vo.result.ResultVO;
 import com.godfazheer.service.impl.CommentServiceImpl;
 import com.godfazheer.utils.IPUtils;
+import com.godfazheer.utils.XssUtils;
 import jakarta.annotation.Resource;
 import jakarta.annotation.security.PermitAll;
 import jakarta.servlet.http.HttpServletRequest;
@@ -51,8 +52,8 @@ public class CommentController {
     @ResponseBody
     @PermitAll
     public ResultVO<?> getAdminCommentCount() {
-        Long Count = commentService.getAllCount();
-        return ResultVO.ok(Count);
+        Long count = commentService.getAllCount();
+        return ResultVO.ok(count);
     }
     @GetMapping("/url/{id}")
     @ResponseBody
@@ -70,7 +71,7 @@ public class CommentController {
                 .name(commentVO.getName())
                 .email(commentVO.getEmail())
                 .url(commentVO.getUrl())
-                .content(commentVO.getContent())
+                .content(XssUtils.clean(commentVO.getContent()))
                 .pageId(commentVO.getPageId())
                 .address(split[0])
                 .device(split[1])
@@ -90,7 +91,7 @@ public class CommentController {
                 .name(replyVO.getName())
                 .email(replyVO.getEmail())
                 .url(replyVO.getUrl())
-                .content(replyVO.getContent())
+                .content(XssUtils.clean(replyVO.getContent()))
                 .commentId(replyVO.getCommentId())
                 .toId(replyVO.getToId())
                 .address(split[0])

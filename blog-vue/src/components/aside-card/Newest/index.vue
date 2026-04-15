@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { TimerOutline } from '@vicons/ionicons5'
 import { NCard, NIcon } from "naive-ui";
-import api from '@/api'
+import * as api from '@/api'
 import {onMounted, ref} from "vue";
 import NewestItem from "@/components/NewestItem";
 import type {BaseArticleCard} from "@/type";
@@ -31,7 +31,7 @@ onMounted(()=>{
                 <span>最新文章</span>
             </div>
         </template>
-    <NewestItem v-for="item in topArticles" :item="item" :key="item.title" :is-last="isLast(item)"/>
+    <NewestItem v-for="item in topArticles" :item="item" :key="item.id" :is-last="isLast(item)"/>
     </n-card>
 </template>
 <style scoped>

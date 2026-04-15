@@ -4,14 +4,14 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/blog
     username: root
-    password: myh134679
+    password: Myh@1346789.
   main:
     banner-mode: off
   data:
     redis:
       host: localhost
       port: 6379
-      password: myh134679
+#      password: ${REDIS_PASSWORD:myh134679}
       lettuce:
         pool:
           max-active: 8
@@ -31,5 +31,19 @@ mybatis-plus:
   global-config:
     banner: false
   mapper-locations: classpath:mapper/*.xml
+# 安全配置（生产环境请务必通过环境变量注入）
+jwt:
+  secret: ${JWT_SECRET:mhdksdu@!@G}
+
+obs:
+  bucket-name: myh-blog-bucket
+  endpoint: https://obs.cn-north-1.myhuaweicloud.com
+#  ak:
+#  sk:
+  domain: https://obs.jiaoker.cn
+
+cors:
+  allowed-origins: CORS_ALLOWED_ORIGINS:*
+
 server:
   port: 6008

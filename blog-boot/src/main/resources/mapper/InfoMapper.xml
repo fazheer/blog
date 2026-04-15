@@ -14,16 +14,16 @@
                             build_time=#{setting.buildTime},
                             icp = #{setting.icp},
                             gov= #{setting.gov}
-        where true;
+        where id = 1;
     </update>
     <update id="updateAdminAvatar">
-        update sys_user set avatar_url = #{avatarUrl} where id= 1
+        update sys_user set avatar_url = #{avatarUrl} where id = #{id}
     </update>
    <update id="updateJiaokerAvatar">
-        update sys_user set avatar_url = #{avatarUrl} where id= 2
+        update sys_user set avatar_url = #{avatarUrl} where id = #{id}
     </update>
     <select id="getSiteInfo" resultType="com.godfazheer.model.dto.InfoDTO">
-        select (select count(*) from tbl_article)    as articleCount,
+        select (select count(*) from tbl_article where deleted = 0 and status = 0)    as articleCount,
                (select count(*) from tbl_tag)        as tagCount,
                (select count(*) from tbl_categories) as categoryCount,
                avatar_url,

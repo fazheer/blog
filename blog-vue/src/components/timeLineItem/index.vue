@@ -9,7 +9,7 @@
     >
       <div class="img-container" v-show="props.article.coverUrl!=''">
         <!--suppress HtmlRequiredAltAttribute -->
-      <img :src="$props.article.coverUrl" style="zoom: 0.1;" />
+      <img :src="$props.article.coverUrl" style="transform: scale(0.1);" />
       </div>
     </n-timeline-item>
 </template>
@@ -40,7 +40,6 @@ img {
 <script setup lang="ts">
 import {computed, ref} from 'vue';
 import VRouter from '@/router'
-import 'md-editor-v3/lib/style.css';
 import {  NTimelineItem, } from 'naive-ui';
 import type {BaseArticleCard} from "@/type";
 const props = defineProps<{

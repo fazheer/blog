@@ -3,11 +3,10 @@ import {MdEditor} from "md-editor-v3";
 import {ref} from "vue";
 import {NButton, NInput, NSpace, useMessage} from 'naive-ui'
 import 'md-editor-v3/lib/style.css';
-import PublishModal from "@/components/PublishModal";
+import ArticleEditModal from "@/components/ArticleEditModal";
 import {useModelShowStore} from "@/stores/useModalShowStore";
 import api from "@/api";
-import moment from "moment";
-import axios from "axios";
+import dayjs from "dayjs";
 
 const message = useMessage()
 const modalShow = useModelShowStore()
@@ -16,7 +15,8 @@ const showModalF = () => {
   if (articleContent.value == '') message.warning("文章内容不能为空")
   else if (title.value == '') message.warning("标题不能为空")
   else {
-    modalShow.showPublish = true
+    modalShow.articleEditMode = 'publish'
+    modalShow.showArticleEdit = true
   }
 }
 const title = ref("")
@@ -32,7 +32,7 @@ const SaveArticleAsDraft = () => {
     categoryName: null,
     content: articleContent.value,
     coverUrl: null,
-    createAt: moment().format('yyyy-MM-DD HH:mm:ss'),
+    createAt: dayjs().format('YYYY-MM-DD HH:mm:ss'),
     id: null,
     isTop: false,
     status: 1,
@@ -59,7 +59,7 @@ const SaveArticleAsDraft = () => {
     <div class="option-container">
       <n-space size="small">
         <n-button type="success" @click="showModalF()">发布文章</n-button>
-        <PublishModal :content="articleContent" :title="title"/>
+        <ArticleEditModal mode="publish" :content="articleContent" :title="title"/>
         <n-button type="error" @click="SaveArticleAsDraft">存为草稿</n-button>
       </n-space>
     </div>

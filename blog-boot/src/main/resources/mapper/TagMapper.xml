@@ -17,6 +17,15 @@
                  left join tbl_tag_article tta on tta.article_id = #{articleId}
         where tt.id = tta.tag_id
     </select>
+    <select id="selectTagNameByArticleIds" resultType="com.godfazheer.model.dto.ArticleTagDTO">
+        select tta.article_id as articleId, tt.name as tagName
+        from tbl_tag tt
+                 inner join tbl_tag_article tta on tta.tag_id = tt.id
+        where tta.article_id in
+        <foreach collection="articleIds" item="id" separator="," open="(" close=")">
+            #{id}
+        </foreach>
+    </select>
     <select id="selectTagCard" resultType="com.godfazheer.model.dto.TagCardDTO">
         select tt.id, tt.name, count(tta.article_id) as count
         from tbl_tag tt

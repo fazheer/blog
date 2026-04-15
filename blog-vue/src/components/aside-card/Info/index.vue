@@ -1,16 +1,15 @@
 <script setup lang="ts">
 import {BarChartOutline} from '@vicons/ionicons5'
 import {NCard, NIcon, NSpace} from 'naive-ui';
-import moment from 'moment'
+import dayjs from 'dayjs'
 const props = defineProps<{
   articleCount:bigint
   buildTime:Date
   siteView:bigint
   lastTime:Date
 }>()
-const  getDay = (date:Date):number =>{
-  return moment(moment()).diff(moment(date),'day')
-
+const getDay = (date:Date):number => {
+  return dayjs().diff(dayjs(date), 'day')
 }
 </script>
 <template>

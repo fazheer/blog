@@ -16,9 +16,7 @@ import {
 import {SearchOutline} from '@vicons/ionicons5'
 import {onMounted, ref, watch} from "vue";
 import type {ArticleDTO, SelectOption} from "@/type";
-import ArticleTr from "@/components/ArticleTr";
-import DraftTr from "@/components/ArticleTr/DraftTr";
-import DelTr from "@/components/ArticleTr/DelTr";
+import ArticleTableRow from "@/components/ArticleTableRow";
 import {useDeletedIdsStore} from "@/stores/DeletedIdsStore";
 import api from "@/api";
 
@@ -74,12 +72,12 @@ const GetPublishArticleCountByTitle = () => {
   })
 }
 const GetDraftArticleCountByTitle = () => {
-  api.getArticleCountByTitle(titleValue.value).then(({data: {data}}) => {
+  api.getDraftArticleCountByTitle(titleValue.value).then(({data: {data}}) => {
     articleCount.value = data
   })
 }
 const GetDelArticleCountByTitle = () => {
-  api.getArticleCountByTitle(titleValue.value).then(({data: {data}}) => {
+  api.getDelArticleCountByTitle(titleValue.value).then(({data: {data}}) => {
     articleCount.value = data
   })
 }
@@ -352,8 +350,8 @@ watch(() => page.value, () => {
         </tr>
         </thead>
         <tbody>
-        <ArticleTr v-for="article in articles" :article="article" :key="Number(article.id)" :all-checked="allChecked"
-                   @delete="GetArticles()"/>
+        <ArticleTableRow v-for="article in articles" :article="article" :key="Number(article.id)" :all-checked="allChecked"
+                         type="published" @refresh="GetArticles()"/>
         </tbody>
       </n-table>
     </n-tab-pane>
@@ -375,7 +373,8 @@ watch(() => page.value, () => {
         </tr>
         </thead>
         <tbody>
-        <DraftTr v-for="article in articles" :article="article" :all-checked="allChecked" @delete="GetArticles"/>
+        <ArticleTableRow v-for="article in articles" :article="article" :key="Number(article.id)" :all-checked="allChecked"
+                         type="draft" @refresh="GetArticles()"/>
         </tbody>
       </n-table>
     </n-tab-pane>
@@ -397,9 +396,9 @@ watch(() => page.value, () => {
         </tr>
         </thead>
         <tbody>
-        <DelTr v-for="article in articles" :article="article" :all-checked="allChecked" @click="GetArticles"/>
+        <ArticleTableRow v-for="article in articles" :article="article" :key="Number(article.id)" :all-checked="allChecked"
+                         type="deleted" @refresh="GetArticles()"/>
         </tbody>
-
       </n-table>
     </n-tab-pane>
   </n-tabs>

@@ -4,7 +4,7 @@ import { NSpace, NPagination } from "naive-ui";
 import {ref, onMounted, watch} from 'vue';
 import Aside from '@/components/aside/index';
 import Banner from "@/components/banner";
-import api from '@/api'
+import * as api from '@/api'
 import type {HomeArticleCard}from '@/type'
 import {useRouter} from "vue-router";
 const page = ref(1)
@@ -40,7 +40,7 @@ const getArticleIndex = (article:HomeArticleCard)=>{
                 <n-space vertical :size="20">
                     <PostOverView
                         v-for="article in articles"
-                        :key="article.title"
+                        :key="article.id"
                         :is-left="getArticleIndex(article)%2==1"
                         :article="article"
                         />

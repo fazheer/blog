@@ -1,13 +1,13 @@
 package com.godfazheer.model.vo.result;
 
-import com.godfazheer.emnus.StatusCode;
+import com.godfazheer.enums.StatusCode;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import static com.godfazheer.emnus.StatusCode.FAIL;
-import static com.godfazheer.emnus.StatusCode.SUCCESS;
+import static com.godfazheer.enums.StatusCode.FAIL;
+import static com.godfazheer.enums.StatusCode.SUCCESS;
 @Data
 @Builder
 @NoArgsConstructor

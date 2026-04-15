@@ -3,16 +3,23 @@ import {MdEditor} from "md-editor-v3";
 import {onMounted, ref} from "vue";
 import {NButton, NInput, NSpace, useMessage} from 'naive-ui'
 import 'md-editor-v3/lib/style.css';
-import {useRoute} from "vue-router";
+import {useRoute, useRouter} from "vue-router";
 import api from "@/api";
 import type {ArticleVO} from "@/type";
-import UpdateModal from "@/components/UpdateModal/index";
+import ArticleEditModal from "@/components/ArticleEditModal";
 import {useModelShowStore} from "@/stores/useModalShowStore";
 
 const message = useMessage()
 const modalShow = useModelShowStore()
 const route = useRoute()
-const articleId = BigInt(route.params.id);
+const router = useRouter()
+let articleId: bigint
+try {
+  articleId = BigInt(route.params.id)
+} catch {
+  router.push('/404')
+  articleId = 0n
+}
 const article = ref<ArticleVO>({
   categoryName: "",
   content: "",
@@ -27,7 +34,8 @@ const article = ref<ArticleVO>({
 const showModalF = () => {
   if (article.value.content=='') message.warning("文章内容不能为空")
   else {
-    modalShow.showUpdate = true
+    modalShow.articleEditMode = 'update'
+    modalShow.showArticleEdit = true
   }
 }
 const GetArticle = ()=>{
@@ -67,7 +75,7 @@ const onUploadImg = async (files:Array<File>, callback:(urls: Array<string>) => 
   <div class="input-container">
     <n-input   v-model:value="article.title"/>
   </div>
-    <UpdateModal :article="article" />
+    <ArticleEditModal mode="update" :article="article" />
   <div class="button-container">
     <n-space style="padding-right: 10px">
       <n-button type="success" @click="showModalF()">发布文章</n-button>

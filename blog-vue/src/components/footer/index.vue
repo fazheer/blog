@@ -2,7 +2,7 @@
 import CIcon from '@/components/icons/CIcon.vue'
 import {NIcon,NSpace} from 'naive-ui'
 import {onMounted, ref} from "vue";
-import api from "@/api";
+import * as api from "@/api";
 const icpGov = ref<{
   icp:String,
   gov:String

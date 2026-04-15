@@ -1,4 +1,4 @@
-import {createRouter, createWebHistory} from 'vue-router'
+import { createRouter, createWebHistory } from 'vue-router'
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -36,7 +36,12 @@ const router = createRouter({
         {
             path: '/tag/:tagName/:tagId',
             name: 'tagArticle',
-            component: () => import('@/views/tagArticle')
+            props: route => ({
+                type: 'tag',
+                id: BigInt(route.params.tagId as string),
+                name: route.params.tagName as string
+            }),
+            component: () => import('@/views/ArticleListByType')
         },
         {
             path: '/categories',
@@ -46,15 +51,19 @@ const router = createRouter({
         {
             path: '/categories/:categoryName/:id',
             name: 'categoriesArticle',
-
-            component: () => import('@/views/categoriesArticle')
+            props: route => ({
+                type: 'category',
+                id: BigInt(route.params.id as string),
+                name: route.params.categoryName as string
+            }),
+            component: () => import('@/views/ArticleListByType')
         }
     ],
     scrollBehavior(to, from, savedPosition) {
         if (savedPosition) {
             return savedPosition
         } else {
-            return {top: 0}
+            return { top: 0 }
         }
     }
 }

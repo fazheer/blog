@@ -11,6 +11,7 @@ import com.godfazheer.model.vo.SettingVO;
 import com.godfazheer.service.InfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -36,9 +37,10 @@ public class InfoServiceImpl implements InfoService {
     public SettingDTO getSiteSetting() {
         return infoDao.selectSiteSetting();
     }
+    @Transactional
     public void updateSiteSetting(SettingVO settingVO) {
-        infoDao.updateAdminAvatar(settingVO.getAdminAvatar());
-        infoDao.updateJiaokerAvatar(settingVO.getJiaokerAvatar());
+        infoDao.updateAdminAvatar(settingVO.getAdminAvatar(), 1L);
+        infoDao.updateJiaokerAvatar(settingVO.getJiaokerAvatar(), 2L);
         infoDao.updateSetting(settingVO);
     }
 

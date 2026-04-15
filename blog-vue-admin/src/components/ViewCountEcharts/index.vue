@@ -16,9 +16,9 @@ import type {LineSeriesOption} from 'echarts/charts'
 import {LineChart} from 'echarts/charts';
 import {UniversalTransition} from 'echarts/features';
 import {CanvasRenderer} from 'echarts/renderers';
-import {onMounted} from "vue";
+import {onMounted, onUnmounted} from "vue";
 import type {WeekView} from "@/type";
-import moment from 'moment'
+import dayjs from 'dayjs'
 
 const props= defineProps<{
   weekViewData:Array<WeekView>
@@ -29,7 +29,7 @@ props.weekViewData.forEach(item=>{
 
 })
 for (let i = props.weekViewData.length-1; i >=0; i--) {
-  xData.push(moment(props.weekViewData[i].time).format("YYYY-MM-DD"))
+  xData.push(dayjs(props.weekViewData[i].time).format("YYYY-MM-DD"))
   yData.push(props.weekViewData[i].view)
 }
 echarts.use([GridComponent, LineChart, CanvasRenderer, UniversalTransition,LegendComponent,TooltipComponent]);
@@ -60,11 +60,15 @@ const option: EChartsOption = {
     }
   ]
 };
+let myChart: echarts.ECharts | null = null
 onMounted(()=>{
-  const myChart = echarts.init(document.getElementById('main')!)
+  myChart = echarts.init(document.getElementById('main')!)
   option && myChart.setOption(option);
 })
 
+onUnmounted(() => {
+  myChart?.dispose()
+})
 
 </script>
 

@@ -21,22 +21,22 @@ public class DescribeController {
     private DescribeServiceImpl describeService;
     @GetMapping
     @ResponseBody
-    public ResultVO<?> getNotice(){
+    public ResultVO<?> getDescribe(){
         return ResultVO.ok(describeService.getDescribe());
     }
     @PutMapping
     @ResponseBody
-    public ResultVO<?> updateNotice(@RequestBody DescribeVO describeVO){
+    public ResultVO<?> updateDescribe(@RequestBody DescribeVO describeVO){
         return ResultVO.ok(describeService.updateDescribe(describeVO));
     }
     @DeleteMapping("/{id}")
     @ResponseBody
-    public ResultVO<?> delNotice(@PathVariable("id") Long id){
+    public ResultVO<?> delDescribe(@PathVariable("id") Long id){
         return ResultVO.ok(describeService.delDescribe(id));
     }
     @PostMapping
     @ResponseBody
-    public ResultVO<?> saveNotice(@RequestBody  DescribeVO describeVO){
+    public ResultVO<?> saveDescribe(@RequestBody  DescribeVO describeVO){
         return ResultVO.ok(describeService.saveDescribe(describeVO));
     }
 

@@ -1,6 +1,6 @@
 package com.godfazheer.service;
 
-import com.godfazheer.model.CategoryCardDTO;
+import com.godfazheer.model.dto.CategoryCardDTO;
 import com.godfazheer.model.dto.ArchiveCardDTO;
 import com.godfazheer.model.dto.CategoriesDTO;
 import com.godfazheer.model.vo.CategoriesVO;

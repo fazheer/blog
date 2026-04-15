@@ -16,7 +16,7 @@ import Page from '@/components/page';
 import {NGradientText} from 'naive-ui';
 import {onMounted, ref} from 'vue';
 import type {Tag} from '@/type'
-import api from '@/api'
+import * as api from '@/api'
 import VRouter from '@/router'
 
 type itemType = "error" | "primary" | "info" | "success" | "warning" | "danger"
@@ -32,7 +32,7 @@ onMounted(() => {
 const typeData: String[] = ["error", "primary", "info", "success", "warning", "danger"]
 
 function randomColor(): itemType {
-  const index = Math.floor(Math.random() * 5 + 1);
+  const index = Math.floor(Math.random() * typeData.length);
 
   return typeData[index] as itemType
 }

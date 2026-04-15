@@ -25,7 +25,7 @@ public interface ArticleDao extends BaseMapper<Article> {
 
 
     @Select("select id,title,cover_url,create_at from tbl_article where deleted=0 order by create_at limit 0,6 ")
-    List<ArticleBaseDTO> selectToxSixArticles();
+    List<ArticleBaseDTO> selectTopSixArticles();
     List<ArticleBaseDTO> selectArticleByTagId(@Param("tagId") Long tagId, Integer pageNum);
 
     List<Long> selectArticleIds();

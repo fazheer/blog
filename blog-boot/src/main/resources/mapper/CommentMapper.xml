@@ -61,7 +61,8 @@
                      love
               from tbl_reply
               ) comments
-            limit #{pageNum},10
+        order by create_at desc
+        limit #{pageNum},10
         ;
     </select><select id="selectAllCommentAndReplyCount" resultType="java.lang.Long">
         select count(*)

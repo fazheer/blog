@@ -1,0 +1,6 @@
+/blog-vue/node_modules/
+/blog-vue-admin/node_modules/
+/blog-boot/target/
+/.playwright-mcp/
+/.mvn/
+/.idea/

@@ -34,8 +34,8 @@
   List<WeekViewDTO> selectOneWeekView();
 
   void updateSetting(@Param("setting") SettingVO settingVO);
-  void updateAdminAvatar(@Param("avatarUrl") String avatarUrl);
-  void updateJiaokerAvatar(@Param("avatarUrl") String avatarUrl);
+  void updateAdminAvatar(@Param("avatarUrl") String avatarUrl, @Param("id") Long id);
+  void updateJiaokerAvatar(@Param("avatarUrl") String avatarUrl, @Param("id") Long id);
 
   @Select("select icp,gov from sys_info")
   IcpGovDTO selectIcpGov();

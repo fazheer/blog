@@ -40,6 +40,19 @@ axiosService.interceptors.request.use(
 )
 
 
+axiosService.interceptors.response.use(
+    (response) => response,
+    (error) => {
+        if (error.response && (error.response.status < 200 || error.response.status >= 300)) {
+            if ((window as any).$message) {
+                (window as any).$message.error('请求失败')
+            } else {
+                console.error('请求失败')
+            }
+        }
+        return Promise.reject(error)
+    }
+)
 axiosService.defaults.headers.common["Content-Type"] = "application/json"
 axiosService.defaults.headers.post["Content-Type"] = "application/json"
 axiosService.defaults.headers.put["Content-Type"] = "application/json"

@@ -117,10 +117,12 @@
         limit #{pageNum},10
     </select>
     <select id="selectArticleBaseYearByTagId" resultType="com.godfazheer.model.dto.article.ArticleBaseYearDTO">
-        select  ta.id, title, cover_url, create_at, DATE_FORMAT(create_at, '%Y') year
+        select ta.id, title, cover_url, create_at, DATE_FORMAT(create_at, '%Y') year
         from tbl_tag_article tta
             left join tbl_article ta on ta.id = tta.article_id left join tbl_tag tt on tt.id = tta.tag_id
-        where tt.id= #{tagId}
+        where tt.id = #{tagId}
+          and ta.deleted = 0
+          and ta.status = 0
         order by create_at desc
         limit #{pageNum},10
     </select>

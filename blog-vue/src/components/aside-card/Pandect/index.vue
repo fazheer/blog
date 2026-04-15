@@ -3,17 +3,16 @@ import { NCard, NAvatar, NButton, NIcon, NSpace } from "naive-ui";
 
 import { LogoGithub, Mail } from "@vicons/ionicons5";
 import { RouterLink } from "vue-router";
-import { ref } from "vue";
-const url = ref("https://s2.loli.net/2022/04/07/1HolLJn4tfzvqEU.jpg")
+
 const props = defineProps<{
-  avatarUrl:String
-  name:String
-  personProfile:String
-  articleCount:bigint
-  tagCount:bigint
-  categoryCount:bigint
-  projectUrl:String
-  email:String
+  avatarUrl: string
+  name: string
+  personProfile: string
+  articleCount: bigint
+  tagCount: bigint
+  categoryCount: bigint
+  projectUrl: string
+  email: string
 }>()
 </script>
 <template>

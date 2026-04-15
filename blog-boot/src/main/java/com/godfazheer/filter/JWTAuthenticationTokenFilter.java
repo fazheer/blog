@@ -1,6 +1,6 @@
 package com.godfazheer.filter;
 
-import com.godfazheer.emnus.StatusCode;
+import com.godfazheer.enums.StatusCode;
 import com.godfazheer.model.dto.LoginUserDTO;
 import com.godfazheer.model.vo.result.ResultVO;
 import com.godfazheer.service.impl.RedisServiceImpl;
@@ -15,11 +15,14 @@ import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
+
+@Slf4j
 
 /*
 每次请求都在请求头携带一个token
@@ -29,6 +32,8 @@ import java.io.IOException;
 public class JWTAuthenticationTokenFilter extends OncePerRequestFilter {
     @Autowired
     private RedisServiceImpl redisService;
+    @Autowired
+    private JwtUtils jwtUtils;
     @Override
     protected void doFilterInternal( HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         //从请求里面获取token
@@ -40,17 +45,17 @@ public class JWTAuthenticationTokenFilter extends OncePerRequestFilter {
         Integer userId;
 
         try{
-            Claims claims = JwtUtils.parseJwtToken(token);
+            Claims claims = jwtUtils.parseJwtToken(token);
             userId = claims.get("userId",Integer.class);
         }catch (Exception e){
-            e.printStackTrace();
+            log.error("JWT解析失败", e);
             ResultVO<Object> fail = ResultVO.fail(StatusCode.TOKEN_INVAILD.getCode(),StatusCode.TOKEN_INVAILD.getDesc());
             String jsonString = JacksonUtils.toJsonString(fail);
             WebUtils.renderString(response,jsonString);
             return;
         }
         String redisKey = "login:"+userId;
-        LoginUserDTO user = redisService.getObejct(redisKey, LoginUserDTO.class);
+        LoginUserDTO user = redisService.getObject(redisKey, LoginUserDTO.class);
         UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(user,null,user.getAuthorities());
         SecurityContextHolder.getContext().setAuthentication(authenticationToken);
         filterChain.doFilter(request,response);
